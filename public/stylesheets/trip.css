@@ -63,6 +63,15 @@ h1 a {
   left: 5px;
 }
 
+.links a.next {
+  position: absolute;
+  right: 5px;
+}
+
+.links a.browse.disabled {
+  display: none;
+}
+
 /*
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
