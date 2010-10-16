@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+
+trips = Trip.create([{ :title => 'Test Trip 1', :destination => 'Test Destination', :start_date => '2010-12-12', :end_date => '2010-12-24'}])
+Event.create(:title => 'Test Event 1', :start_date => '2010-12-12 10:00:00 CST', :end_date => '2010-12-12 11:00:00 CST', :trip => trips.first)
+Event.create(:title => 'Test Event 2', :start_date => '2010-12-12 11:30:00 CST', :end_date => '2010-12-12 12:00:00 CST', :trip => trips.first)
