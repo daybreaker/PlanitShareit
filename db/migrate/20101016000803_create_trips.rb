@@ -5,6 +5,7 @@ class CreateTrips < ActiveRecord::Migration
       t.string :title
       t.datetime :start_date
       t.datetime :end_date
+      t.string :destination
       t.string :destination_city
       t.string :destination_state
       t.string :destination_zip
