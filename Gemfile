@@ -37,3 +37,4 @@ gem "pickle", :group => :test
 gem "capybara", :group => :test
 gem "devise"
 gem "jquery-rails"
+gem "cancan"

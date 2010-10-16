@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   def new
     @trip = Trip.find(params[:trip_id])
     @event = @trip.events.new
+	authorize! :create, @event
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,6 +51,17 @@ class EventsController < ApplicationController
                         :status => :unprocessable_entity }
         end
       end
+=======
+	@events = @trip.events
+   	authorize! :view, @events
+ 
+  end
+  
+  def show
+	@event = Event.find(params[:id])
+   	authorize! :view, @event
+
+>>>>>>> 8d0e66a5e66be80f9724ff26d85024dcdfa5ec55
   end
   
 end
