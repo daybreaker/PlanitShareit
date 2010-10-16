@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<h1><%= @trip.title %></h1>
+<h1><%= @trip.title %><a href="#">Edit</a></h1>
 
 <h2>
   <%= @trip.destination_city %>, <%= @trip.destination_state %>
@@ -16,16 +16,16 @@
 
 <div id="map"></div>
 
-<div>
-  Your Itinerary
-  Add Event
+<div class="itinerary">
+  <span>Your Itinerary</span>
+  <a href="#" class="add_event">Add Event</a>
 </div>
 
 <div class="links">
-  <a class="prev browse left"></a>
-  <a href="#">Overview</a>
-  <a href="#" class="active">Daily View</a>
-  <a class="next browse right"></a>
+  <a class="prev browse left"><%= image_tag 'left-arrow.png' %></a>
+  <a href="#" class="switch overview active">Overview</a>
+  <a href="#" class="switch daily">Daily View</a>
+  <a class="next browse right"><%= image_tag 'right-arrow.png' %></a>
 </div>
 
 <div class="scrollable">
