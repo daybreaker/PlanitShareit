@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index]
+  
   def index
     # TODO Should be users' trips
     @trips = Trip.all
