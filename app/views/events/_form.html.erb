@@ -1,6 +1,6 @@
-<div id="map_canvas" style="width:300px; height:300px; float:right"></div>
 
-<%= form_for([@trip, @event]) do |f| %>
+
+<%= form_for([@trip, @event], :html => {:class => 'event_form'}) do |f| %>
 	<% if @event.errors.any? %>
 	<div id="error-list">
 		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -15,38 +15,45 @@
 	<%= f.hidden_field :latitude %>
 	<%= f.hidden_field :longitude %>
 	
-	<div class="field">
-		<%= f.label :title %><br />
-		<%= f.text_field :title %>
-	</div>
+	<table>
+	  <tr>
+	    <th><%= f.label :title %></th>
+		  <td><%= f.text_field :title %></td>
+    </tr>
 	
-	<div class="field">
-		<%= f.label :location %><br />
-		<%= f.text_field :location %>
-	</div>
-	<div class="field">
-		<%= f.label :start_date %><br />
-		<%= f.text_field :start_date %>
-	</div>
-	<div class="field">
-		<%= f.label :end_date %><br />
-		<%= f.text_field :end_date %>
-	</div>
-	<div class="field">
-		<%= f.label :notes %><br />
-		<%= f.text_area :notes %>
-	</div>
-	<div class="field">
-		<%= f.label :must_do %><br />
-		<%= f.check_box :must_do %>
-	</div>
-	<div class="field">
-		<%= f.label :done %><br />
-		<%= f.check_box :done %>
-	</div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
+	  <tr>
+	    <th><%= f.label :location %></th>
+		  <td><%= f.text_field :location %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :start_date %></th>
+		  <td><%= f.text_field :start_date %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :end_date %></th>
+		  <td><%= f.text_field :end_date %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :notes %></th>
+		  <td><%= f.text_area :notes %></td>
+		</tr>
+
+	  <tr>
+	    <th></th>
+		  <td><%= f.label :must_do, 'Make this a must do!' %> <%= f.check_box :must_do %></td>
+		</tr>
+
+    <tr>
+      <th></th>
+      <td>
+        <%= image_submit_tag 'event-add-another.png' %>
+        <%= image_submit_tag 'event-finish.png' %>
+      </td>
+    </tr>
+	</table>
 <% end %>		
 
 <script type="text/javascript">
