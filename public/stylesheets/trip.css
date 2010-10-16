@@ -63,6 +63,15 @@ h1 a {
   left: 5px;
 }
 
+.links a.next {
+  position: absolute;
+  right: 5px;
+}
+
+.links a.browse.disabled {
+  display: none;
+}
+
 /*
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
@@ -335,11 +344,13 @@ h1 a {
 
 .event_form input[type=text] {
   width: 200px;
+  border: 1px solid #ccc;
 }
 
 .event_form textarea {
   height: 70px;
   width: 250px;
+  border: 1px solid #ccc;
 }
 
 /****** /Event form ******/

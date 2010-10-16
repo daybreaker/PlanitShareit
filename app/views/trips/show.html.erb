@@ -18,7 +18,7 @@
 
 <div class="itinerary">
   <span>Your Itinerary</span>
-  <a href="#" class="add_event">Add Event</a>
+  <%= link_to 'Add an event', new_trip_event_path(@trip), {:class => 'add_event', :rel => '#event-form-overlay'} %>
 </div>
 
 <div class="links">
@@ -48,8 +48,6 @@
 </div>
 
 <a class="next browse right"></a>
-
-<%= link_to 'Add an event', new_trip_event_path(@trip), {:rel => '#event-form-overlay'} %>
 
 <div id="open_events">
   <div>Fly by the seat of your pants</div>
@@ -128,8 +126,7 @@ $(document).ready(function() {
 <script type="text/javascript" charset="utf-8">
 	var $open_overlay;
 	$(function() {
-		
-		var overlay_conf = 
+
 		$('div.contentWrap form').live('submit', function () {
 			var action = $(this).attr('action');
 			$.post(action, $(this).serialize());
