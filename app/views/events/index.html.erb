@@ -1,4 +1,1 @@
-<% @events.each do |event| %>
-	<a href="<%= edit_trip_event_path(@trip.id, event.id) %>">Edit event</a>
-	
-<% end %>
+<%= render :partial => 'events/event_open', :collection => @events %>

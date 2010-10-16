@@ -3,10 +3,10 @@ class EventsController < ApplicationController
   def new
     @trip = Trip.find(params[:trip_id])
     @event = @trip.events.new
-	authorize! :create, @event
+    authorize! :create, @event
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :action => 'new', :layout => false }
       format.xml  { render :xml => @event }
     end
   end
@@ -15,53 +15,45 @@ class EventsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @event = @trip.events.create(params[:event])
     
-    redirect_to trip_path(@trip)
+    render :nothing => true
   end
   
   def index
     @trip = Trip.find(params[:trip_id])
-    @events = @trip.events
+    @events = @trip.events.open
+    # authorize! :view, @events
+    render :layout => false
   end
   
   # def show
-  #   respond_to do |format|
-  #     format.html # show.html.erb
-  #     format.xml  { render :xml => @event }
+  #     @event = Event.find(params[:id])
+  #     # authorize! :view, @event
+  #     respond_to do |format|
+  #       format.html # show.html.erb
+  #       format.xml  { render :xml => @event }
+  #     end
   #   end
-  # end
   
   def edit
     @trip = Trip.find(params[:trip_id])
     @event = Event.find(params[:id])
+    
+    render :layout => false
   end
   
   def update
     @trip = Trip.find(params[:trip_id])
     @event = Event.find(params[:id])
-    
 
-      respond_to do |format|
-        if @event.update_attributes(params[:event])
-          format.html { redirect_to( @trip,
-                        :notice => 'Post was successfully updated.') }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @event.errors,
-                        :status => :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        format.html { render :nothing => true }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @event.errors,
+                      :status => :unprocessable_entity }
       end
-=======
-	@events = @trip.events
-   	authorize! :view, @events
- 
-  end
-  
-  def show
-	@event = Event.find(params[:id])
-   	authorize! :view, @event
-
->>>>>>> 8d0e66a5e66be80f9724ff26d85024dcdfa5ec55
-  end
-  
+    end
+  end  
 end

@@ -84,3 +84,18 @@
 .navi a.active {
 	background-position:0 -16px;     
 }
+
+/* overlay (should this be here?) */
+#form-overlay {
+	background-color: white;
+	color: black;
+	height: 450px;
+}
+
+div.contentWrap {
+	height:500px;
+	width: 400px;
+	overflow-y:auto;
+}
+
+
