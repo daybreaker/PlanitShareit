@@ -11,6 +11,9 @@
 <% end %>
 
 <% form_for @trip do |f| %>
+  <!-- User -->
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
   <!-- Destination -->
   <%= f.label :destination %>
   <%= f.text_field :destination %>

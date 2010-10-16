@@ -1,6 +1,8 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
+  
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "please-change-me@config-initializers-devise.com"
@@ -21,7 +23,9 @@ Devise.setup do |config|
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
   # config.authentication_keys = [ :email ]
-
+  config.authentication_keys = [ :username ]
+  config.password_length = 4..20
+  
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
 
