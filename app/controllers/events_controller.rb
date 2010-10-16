@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  
+  before_filter :load_trip
+
   def new
-    @trip = Trip.find(params[:trip_id])
     @event = @trip.events.new
     authorize! :create, @event
 
@@ -10,39 +10,29 @@ class EventsController < ApplicationController
       format.xml  { render :xml => @event }
     end
   end
-  
+
   def create
-    @trip = Trip.find(params[:trip_id])
-    @event = @trip.events.create(params[:event])
-    
-    render :nothing => true
+    @event = @trip.events.new(params[:event])
+
+    if @event.save
+    else
+    end
   end
-  
+
   def index
     @trip = Trip.find(params[:trip_id])
     @events = @trip.events.open
     # authorize! :view, @events
     render :layout => false
   end
-  
-  # def show
-  #     @event = Event.find(params[:id])
-  #     # authorize! :view, @event
-  #     respond_to do |format|
-  #       format.html # show.html.erb
-  #       format.xml  { render :xml => @event }
-  #     end
-  #   end
-  
+
   def edit
-    @trip = Trip.find(params[:trip_id])
     @event = Event.find(params[:id])
-    
+
     render :layout => false
   end
-  
+
   def update
-    @trip = Trip.find(params[:trip_id])
     @event = Event.find(params[:id])
 
     respond_to do |format|
@@ -56,4 +46,10 @@ class EventsController < ApplicationController
       end
     end
   end  
+
+  private
+
+  def load_trip
+    @trip = Trip.find(params[:trip_id])
+  end
 end
