@@ -8,6 +8,7 @@ class CreateEvents < ActiveRecord::Migration
       t.text :notes
       t.boolean :must_do
       t.boolean :done
+      t.references :trip
 
       t.timestamps
     end
