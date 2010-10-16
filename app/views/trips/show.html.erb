@@ -6,7 +6,7 @@
 
 <div id="map"></div>
 
-<div class="navi">
+<div class="navi"></div>
 
 <a class="prev browse left"></a>
 
@@ -16,11 +16,12 @@
   <div class="items">
 
     <% @trip.days.each_slice(4) do |day_array| %>
-      <div>
+      <div class="item">
         <% day_array.each do |day| %>
 
           <div class="date">
             <div class="title"><%= day.strftime("%B %d") %></div>
+            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
           </div>
 
         <% end %>
@@ -32,6 +33,8 @@
 
 <a class="next browse right"></a>
 
-<div id="open_tasks">
+<%= link_to 'Add an event', new_trip_event_path(@trip) %>
+
+<div id="open_events">
   <div>Fly by the seat of your pants</div>
 </div>
