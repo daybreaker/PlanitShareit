@@ -2,6 +2,7 @@ class CreateTrips < ActiveRecord::Migration
   def self.up
     create_table :trips do |t|
       t.integer :user_id
+      t.string :status, :default => 'active'
       t.string :title
       t.datetime :start_date
       t.datetime :end_date
