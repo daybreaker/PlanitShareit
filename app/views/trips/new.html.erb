@@ -1,4 +1,4 @@
-<% if @trip.errors.any? %>
+<% if false #@trip.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
 
@@ -14,33 +14,67 @@
   <!-- User -->
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
-  <!-- Destination -->
-  <%= f.label :destination %>
-  <%= f.text_field :destination %>
+  <dl>
+    <!-- Destination -->
+    <dt>Destination</dt>
+    <dd>
+      <% if @trip.errors['destination'] %>
+        <div class="error"><%= @trip.errors.full_messages[@trip.errors.keys.index(:destination)] %></div>
+      <% end %>
 
-  <!-- Duration -->
-  <%= f.label :start_date %>
-  <%= f.text_field :start_date %>
+      <%= f.label :destination, 'Where are you going?' %>
+      <%= f.text_field :destination %>
+      <a href="#" class="next">Continue</a>
+    </dd>
 
-  <%= f.label :end_date %>
-  <%= f.text_field :end_date %>
+    <!-- Duration -->
+    <dt>Duration</dt>
+    <dd>
+      <% ['start_date', 'end_date'].each do |error| %>
+        <%= content_tag 'div', @trip.errors.full_messages[@trip.errors.keys.index(error.to_sym)] if @trip.errors[error] %>
+      <% end %>
 
-  <!-- Travel Info -->
-  <%= f.label :departure_city %>
-  <%= f.text_field :departure_city %>
+      <p>When will you be there?</p>
 
-  <%= f.label :departure_time %>
-  <%= f.text_field :departure_time %>
+      <div class="duration">
+        <%= f.label :start_date, 'Arrival' %>
+        <%= f.text_field :start_date %>
+        <br />
+        <%= f.label :end_date, 'Departure' %>
+        <%= f.text_field :end_date %>
+      </div>
 
-  <%= f.label :arrival_city %>
-  <%= f.text_field :arrival_city %>
+      <a href="#" class="prev">Previous</a>
+      <a href="#" class="next">Continue</a>
+    </dd>
 
-  <%= f.label :arrival_time %>
-  <%= f.text_field :arrival_time %>
+    <!-- Travel Info -->
+    <dt>Travel Info</dt>
+    <dd>
+      <%= f.label :departure_city %>
+      <%= f.text_field :departure_city %><br />
 
-  <!-- Accomodations -->
-  <%= f.label :accomodation_name %>
-  <%= f.text_field :accomodation_name %>
+      <%= f.label :departure_time %>
+      <%= f.text_field :departure_time %><br />
 
-  <%= f.submit 'Create trip' %>
+      <%= f.label :arrival_city %>
+      <%= f.text_field :arrival_city %><br />
+
+      <%= f.label :arrival_time %>
+      <%= f.text_field :arrival_time %>
+
+      <a href="#" class="prev">Previous</a>
+      <a href="#" class="next">Continue</a>
+    </dd>
+
+    <!-- Accomodations -->
+    <dt>Accomodations</dt>
+    <dd>
+      <%= f.label :accomodation_name %>
+      <%= f.text_field :accomodation_name %>
+
+      <a href="#" class="prev">Previous</a>
+      <%= f.submit 'Create trip' %>
+    </dd>
+  </dl>
 <% end %>
