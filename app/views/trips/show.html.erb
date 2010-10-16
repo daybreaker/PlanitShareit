@@ -75,14 +75,14 @@ function initialize(){
   //GEOCODER
   geocoder = new google.maps.Geocoder();
   
-	  var marker = new google.maps.Marker({
+	  var mainMarker = new google.maps.Marker({
         position: latlng, 
         map: map, 
         title:"<%= @trip.destination %>"
 	  });
 	  
   <% @trip.events.each do |place| %>
-	  myLatLng = new google.maps.LatLng(<%= place.latitude.to_s + ", " + place.longitude.to_s %>);
+	  myLatLng = new google.maps.LatLng(<%= place.latitude %>, <%= place.longitude %>);
 	  var marker = new google.maps.Marker({
         position: myLatLng, 
         map: map, 
