@@ -1,3 +1,20 @@
+.links {
+  position: relative;
+  text-align: center;
+  margin-top: 5px;
+  background-color: #A2CECF;
+  width: 726px;
+  height: 30px;
+}
+
+.links a {
+  
+}
+
+.links a.active {
+  
+}
+
 /*
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
@@ -8,8 +25,8 @@
 	overflow:hidden;
 	width: 720px;
 	height:300px;
-	border: 1px solid red;
-	margin-top: 20px;
+	border: 3px solid #F6F692;
+	border-top: none;
 }
 
 /*
@@ -25,12 +42,6 @@
 	margin: 0;
 }
 
-.scrollable .links {
-  text-align: center;
-  margin-top: 5px;
-  font-size: 80%;
-}
-
 /*
 	a single item. must be floated in horizontal scrolling.
 	typically, this element is the one that *you* will style
@@ -42,12 +53,10 @@
 
 .items div div.date {
   float: left;
-  margin: 10px 0px 20px 0px;
   background-color: #fff;
-  border-left: 1px solid gray;
-  border-top: 1px solid gray;
+  border-left: 3px solid #E2E9A3;
   width: 178px;
-  height: 271px;
+  height: 300px;
 }
 
 .items div div.date.first {
@@ -67,7 +76,7 @@
 
 .item .date .title {
   text-align: center;
-  border-bottom: 1px solid red;
+  background-color: #F6F692;
 }
 
 .event_tiny {
@@ -124,7 +133,7 @@
 }
 
 #open_events {
-  border: 1px solid green;
+  border: 3px solid #E2E9A3;
   width: 700px;
   padding: 10px;
 }
