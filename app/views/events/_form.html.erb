@@ -1,6 +1,6 @@
 <div id="map_canvas" style="width:300px; height:300px; float:right"></div>
 
-<%= form_for([@trip, @trip.events.build]) do |f| %>
+<%= form_for([@trip, @event]) do |f| %>
 	<% if @event.errors.any? %>
 	<div id="error-list">
 		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>

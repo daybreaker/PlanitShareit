@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<h1><%= @trip.title %></h1>
+<h1><%= @trip.title %><a href="#">Edit</a></h1>
 
 <h2>
   <%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %>
@@ -16,16 +16,16 @@
 
 <div id="map_canvas" style="width:725px; height:450px;"></div>
 
-<div>
-  Your Itinerary
-  Add Event
+<div class="itinerary">
+  <span>Your Itinerary</span>
+  <a href="#" class="add_event">Add Event</a>
 </div>
 
 <div class="links">
-  <a class="prev browse left"></a>
-  <a href="#">Overview</a>
-  <a href="#" class="active">Daily View</a>
-  <a class="next browse right"></a>
+  <a class="prev browse left"><%= image_tag 'left-arrow.png' %></a>
+  <a href="#" class="switch overview active">Overview</a>
+  <a href="#" class="switch daily">Daily View</a>
+  <a class="next browse right"><%= image_tag 'right-arrow.png' %></a>
 </div>
 
 <div class="scrollable">
@@ -47,12 +47,14 @@
   </div>
 </div>
 
+<a class="next browse right"></a>
+
+<%= link_to 'Add an event', new_trip_event_path(@trip), {:rel => '#form-overlay'} %>
+
 <div id="open_events">
   <div>Fly by the seat of your pants</div>
   <%= render :partial => 'events/event_open', :collection => @trip.events.open %>
 </div>
-
-<%= link_to 'Add an event', new_trip_event_path(@trip) %>
 
 <script type="text/javascript">
 
@@ -96,4 +98,36 @@ $(document).ready(function() {
   
 });
 
+</script>
+<div id="form-overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+	var $open_overlay;
+	$(function() {
+		
+		var overlay_conf = 
+		$('div.contentWrap form').live('submit', function () {
+			var action = $(this).attr('action');
+			$.post(action, $(this).serialize());
+			$open_overlay.close();
+			return false;
+		});
+				
+		$("a[rel]").overlay({
+			mask: 'black',
+			onBeforeLoad: function() {
+				// grab wrapper element inside content
+				var wrap = this.getOverlay().find(".contentWrap");
+				// load the page specified in the trigger
+				wrap.load(this.getTrigger().attr("href"));
+				$open_overlay = this;
+			}
+
+		});
+	});
 </script>

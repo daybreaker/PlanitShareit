@@ -1,3 +1,24 @@
+h1 a {
+  font-size: 10px;
+  margin-left: 10px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.itinerary {
+  width: 726px;
+  margin-bottom: 10px;
+}
+
+.itinerary span {
+  font-size: 120%;
+  color: #3B5A76;
+}
+
+.itinerary a.add_event {
+  float: right;
+}
+
 .links {
   position: relative;
   text-align: center;
@@ -7,12 +28,39 @@
   height: 30px;
 }
 
-.links a {
-  
+.links a.switch {
+  display: block;
+  position: absolute;
+  color: white;
+  text-decoration: none;
+  background-color: #719FAE;
+  width: 120px;
+  height: 23px;
+  padding-top: 7px;
+  font-size: 90%;
 }
 
 .links a.active {
-  
+  background-color: #2E607B;
+  top: -10px;
+  padding-top: 17px;
+}
+
+.links a.overview {
+  left: 243px;
+}
+
+.links a.daily {
+  left: 363px;
+}
+
+.links a.browse {
+  cursor: pointer;
+}
+
+.links a.prev {
+  position: absolute;
+  left: 5px;
 }
 
 /*
@@ -70,8 +118,9 @@
 }
 
 .items div div.date .title {
-  font-size: 110%;
-  padding: 3px;
+  font-size: 105%;
+  padding: 5px;
+  color: #2D607B;
 }
 
 .item .date .title {
@@ -111,6 +160,11 @@
   background-color: red;
 }
 
+/* active state (current page state) */
+.navi a.active {
+	background-position:0 -16px;     
+}
+
 #print_itinerary {
   position: absolute;
   left: 0;
@@ -137,6 +191,18 @@
   width: 700px;
   padding: 10px;
 }
+
+/* overlay (should this be here?) */
+#form-overlay {
+	background-color: white;
+	color: black;
+	height: 450px;
+}
+
+div.contentWrap {
+	height:500px;
+	width: 400px;
+	overflow-y:auto;
 
 
 /* UNLESS YOU KNOW WHAT YOU'RE DOING, DO NOT CHANGE THE FOLLOWING RULES */

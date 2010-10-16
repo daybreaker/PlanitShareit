@@ -37,6 +37,7 @@ body {
 #content h2 {
   color: #373737;
   margin: 0;
+  margin-bottom: 30px;
 }
 
 #content #sidebar {
