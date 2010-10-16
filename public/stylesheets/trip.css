@@ -111,6 +111,11 @@
   background-color: red;
 }
 
+/* active state (current page state) */
+.navi a.active {
+	background-position:0 -16px;     
+}
+
 #print_itinerary {
   position: absolute;
   left: 0;
@@ -137,6 +142,18 @@
   width: 700px;
   padding: 10px;
 }
+
+/* overlay (should this be here?) */
+#form-overlay {
+	background-color: white;
+	color: black;
+	height: 450px;
+}
+
+div.contentWrap {
+	height:500px;
+	width: 400px;
+	overflow-y:auto;
 
 
 /* UNLESS YOU KNOW WHAT YOU'RE DOING, DO NOT CHANGE THE FOLLOWING RULES */

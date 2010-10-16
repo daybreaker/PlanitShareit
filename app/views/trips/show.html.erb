@@ -47,9 +47,44 @@
   </div>
 </div>
 
+<a class="next browse right"></a>
+
+<%= link_to 'Add an event', new_trip_event_path(@trip), {:rel => '#form-overlay'} %>
+
 <div id="open_events">
   <div>Fly by the seat of your pants</div>
   <%= render :partial => 'events/event_open', :collection => @trip.events.open %>
 </div>
 
-<%= link_to 'Add an event', new_trip_event_path(@trip) %>
+<div id="form-overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+	var $open_overlay;
+	$(function() {
+		
+		var overlay_conf = 
+		$('div.contentWrap form').live('submit', function () {
+			var action = $(this).attr('action');
+			$.post(action, $(this).serialize());
+			$open_overlay.close();
+			return false;
+		});
+				
+		$("a[rel]").overlay({
+			mask: 'black',
+			onBeforeLoad: function() {
+				// grab wrapper element inside content
+				var wrap = this.getOverlay().find(".contentWrap");
+				// load the page specified in the trigger
+				wrap.load(this.getTrigger().attr("href"));
+				$open_overlay = this;
+			}
+
+		});
+	});
+</script>

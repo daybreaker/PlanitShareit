@@ -2,4 +2,4 @@
 <%= event_open.location %><br />
 <%= event_open.notes %>
 
-<%= link_to 'Edit', edit_trip_event_path(@trip, event_open) %>
+<%= link_to 'Edit', edit_trip_event_path(@trip, event_open), {:rel => '#form-overlay'} %>
