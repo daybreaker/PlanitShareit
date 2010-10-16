@@ -1,0 +1,40 @@
+<h1><%= @trip.title %></h1>
+
+<h2>
+  <%= @trip.destination_city %>, <%= @trip.destination_state %>
+</h2>
+
+<div id="map"></div>
+
+<div class="navi"></div>
+
+<a class="prev browse left"></a>
+
+<div class="scrollable">
+  <div>Overview | Daily View</div>
+
+  <div class="items">
+
+    <% @trip.days.each_slice(4) do |day_array| %>
+      <div class="item">
+        <% day_array.each do |day| %>
+
+          <div class="date">
+            <div class="title"><%= day.strftime("%B %d") %></div>
+            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+          </div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<a class="next browse right"></a>
+
+<%= link_to 'Add an event', new_trip_event_path(@trip) %>
+
+<div id="open_events">
+  <div>Fly by the seat of your pants</div>
+</div>
