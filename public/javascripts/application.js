@@ -13,3 +13,9 @@ $(function() {
     return false;
   });
 });
+
+function success(msg,type) {
+  $('#flash').addClass(type).html(msg).show();
+
+  $('#flash').delay(2000).fadeOut().removeClass(type);
+}

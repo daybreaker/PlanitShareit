@@ -13,10 +13,6 @@ class EventsController < ApplicationController
 
   def create
     @event = @trip.events.new(params[:event])
-
-    if @event.save
-    else
-    end
   end
 
   def index
