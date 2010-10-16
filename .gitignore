@@ -1,0 +1,12 @@
+.bundle
+log/*.log
+db/*.db
+db/*.sqlite3
+db/schema.rb
+tmp/**/*
+.DS_Store
+._*
+config/database.yml
+test/fixtures/*
+public/javascripts/all.js
+public/stylesheets/all.js
