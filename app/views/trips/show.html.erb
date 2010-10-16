@@ -93,12 +93,26 @@ function initialize(){
       bounds.extend(myLatLng);
       map.fitBounds(bounds);
   <% end %>
-               
+  
+  $("#map_canvas").append('<span class="hide_map"><a href="javascript://" id="hide_map_link">hide map</a></span>');
 }
 
 $(document).ready(function() {
          
   initialize();
+  
+  $("#hide_map_link").toggle(function(){
+	$("#map_canvas").elapsor({
+      color:'#fff',
+      opacity:70
+	});
+	$("#map_canvas").animate({height:"50px"},1000);
+	$("#map_canvas span a").html("show map");
+  }, function(){
+	$("#map_canvas").hideElapsor();
+	$("#map_canvas").animate({height:"450px"},1000);
+	$("#map_canvas span a").html("hide map");
+  });
   
 });
 
