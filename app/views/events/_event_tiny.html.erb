@@ -1,4 +1,4 @@
-<div class="event_tiny">
-  <%= event_tiny.title %>
+<div class="event_tiny<%= ' first' if event_tiny_counter == 0 %>">
+  <%= event_tiny.title %><br />
   <%= link_to 'Edit', edit_trip_event_path(@trip, event_tiny) %>
 </div>

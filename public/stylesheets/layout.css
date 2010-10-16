@@ -1,0 +1,49 @@
+body {
+  margin: 25px;
+  font-family: arial;
+  color: #333;
+}
+
+#header, #content, #footer {
+  width: 970px;
+  margin: 0 auto;
+}
+
+#header {
+  margin-bottom: 10px;
+  padding: 0px;
+  width: 995px;
+}
+
+#header #logo {
+  font-size: 130%;
+}
+
+#header #user_nav {
+  float: right;
+  font-size: 90%;
+}
+
+#content {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+#content h1 {
+  color: #666;
+  margin: 0;
+}
+
+#content h2 {
+  color: #999;
+  margin: 0;
+}
+
+#content #sidebar {
+  float: right;
+  position: relative;
+  background-color: #eee;
+  width: 200px;
+  height: 300px;
+  padding: 15px;
+}
