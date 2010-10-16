@@ -1,3 +1,3 @@
 $(function() {
-  $(".scrollable").scrollable().navigator();
+  $(".scrollable").scrollable();
 });

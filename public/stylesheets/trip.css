@@ -7,8 +7,9 @@
 	position:relative;
 	overflow:hidden;
 	width: 720px;
-	height:200px;
+	height:300px;
 	border: 1px solid red;
+	margin-top: 20px;
 }
 
 /*
@@ -21,6 +22,13 @@
 	/* this cannot be too large */
 	width:20000em;
 	position:absolute;
+	margin: 0;
+}
+
+.scrollable .links {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 80%;
 }
 
 /*
@@ -32,17 +40,18 @@
 	float:left;
 }
 
-/**
- * These are the most important elements to style:
- */
 .items div div.date {
-  float:left;
-  margin:10px 0px 20px 0px;
-  background-color:#fff;
-  padding:2px;
-  border: 1px solid gray;
-  width:180px;
-  height:155px;
+  float: left;
+  margin: 10px 0px 20px 0px;
+  background-color: #fff;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  width: 178px;
+  height: 271px;
+}
+
+.items div div.date.first {
+  border-left: none;
 }
 
 .scrollable .active {
@@ -53,36 +62,76 @@
 
 .items div div.date .title {
   font-size: 110%;
-}
-/** End important elements **/
-
-/* position and dimensions of the navigator */
-.navi {
-	margin-left:328px;
-	width:200px;
-	height:20px;
+  padding: 3px;
 }
 
-
-/* items inside navigator */
-.navi a {
-	width:8px;
-	height:8px;
-	float:left;
-	margin:3px;
-	background: url(/images/navigator.png) 0 0 no-repeat;
-	display:block;
-	font-size:1px;
+.item .date .title {
+  text-align: center;
+  border-bottom: 1px solid red;
 }
 
-/* mouseover state */
-.navi a:hover {
-	background-position:0 -8px;      
+.event_tiny {
+  border-top: 1px solid #ccc;
+  margin: 5px 10px 5px 10px;
+  padding-top: 3px;
+  font-size: 95%;
+}
+
+.event_tiny.first {
+  border: none;
+}
+
+.event_tiny a {
+  font-size: 80%;
+  text-decoration: none;
+}
+
+.event_tiny a:hover {
+  text-decoration: underline;
+}
+
+#share_it {
+  position: absolute;
+  left: 0;
+  width: 260px;
+  height: 30px;
+  text-align: right;
+  vertical-align: middle;
+  padding: 12px 15px 0 0;
+  font-size: 110%;
+  background-color: red;
 }
 
 /* active state (current page state) */
 .navi a.active {
 	background-position:0 -16px;     
+}
+
+#print_itinerary {
+  position: absolute;
+  left: 0;
+  top: 65px;
+  height: 30px;
+  width: 215px;
+  padding: 12px 0 0 15px;
+  background-color: blue;
+}
+
+#share_it a,
+#print_itinerary a {
+  display: block;
+  text-decoration: none;
+}
+
+#share_it a:hover,
+#print_itinerary a:hover {
+  text-decoration: underline;
+}
+
+#open_events {
+  border: 1px solid green;
+  width: 700px;
+  padding: 10px;
 }
 
 /* overlay (should this be here?) */
@@ -97,5 +146,3 @@ div.contentWrap {
 	width: 400px;
 	overflow-y:auto;
 }
-
-

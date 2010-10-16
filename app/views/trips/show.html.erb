@@ -1,3 +1,13 @@
+<div id="sidebar">
+  <div id="share_it">
+    <a href="#">Share it &gt;</a>
+  </div>
+
+  <div id="print_itinerary">
+    <a href="#">Print Itinerary</a>
+  </div>
+</div>
+
 <h1><%= @trip.title %></h1>
 
 <h2>
@@ -6,12 +16,10 @@
 
 <div id="map"></div>
 
-<div class="navi"></div>
-
 <a class="prev browse left"></a>
 
 <div class="scrollable">
-  <div>Overview | Daily View</div>
+  <div class="links">Overview | Daily View</div>
 
   <div class="items">
 
@@ -19,7 +27,7 @@
       <div class="item">
         <% day_array.each do |day| %>
 
-          <div class="date">
+          <div class="date<%= ' first' if day == day_array[0] %>">
             <div class="title"><%= day.strftime("%B %d") %></div>
             <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
           </div>
@@ -50,11 +58,11 @@
 <script type="text/javascript" charset="utf-8">
 	var $open_overlay;
 	$(function() {
+		
+		var overlay_conf = 
 		$('div.contentWrap form').live('submit', function () {
 			var action = $(this).attr('action');
-			$.post(action, $(this).serialize(), function (data) {
-				$('#open_events').load('<%= trip_events_path(@trip) %>');
-			});
+			$.post(action, $(this).serialize());
 			$open_overlay.close();
 			return false;
 		});
