@@ -1,0 +1,4 @@
+<% @events.each do |event| %>
+	<a href="<%= edit_trip_event_path(@trip.id, event.id) %>">Edit event</a>
+	
+<% end %>
