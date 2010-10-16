@@ -1,6 +1,6 @@
 <div class="header">
   <%= image_tag 'event-form-header.png', :class => 'title' %>
-  <a href="#" onclick="$open_overlay.close();"><%= image_tag 'event-form-close.png' %></a>
+  <a href="#" onclick="$open_overlay.close(); return false;"><%= image_tag 'event-form-close.png' %></a>
 </div>
 
 <%= render 'form' %>
