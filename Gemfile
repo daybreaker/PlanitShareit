@@ -38,3 +38,4 @@ gem "capybara", :group => :test
 gem "devise"
 gem "jquery-rails"
 gem "cancan"
+gem "geokit"

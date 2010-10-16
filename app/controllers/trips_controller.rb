@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
-  
+  before_filter :authenticate_user!
+    require 'geokit'
+
   def index
     # TODO Should be users' trips
     @trips = user_signed_in? ? current_user.trips : []
@@ -17,7 +18,9 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(params[:trip])
-
+	geocode = Geokit::Geocoders::GoogleGeocoder.geocode(@trip.destination)
+	@trip.latitude=geocode.lat
+	@trip.longitude=geocode.lng
     if @trip.save
       redirect_to @trip, :notice => 'Trip created.'
     else

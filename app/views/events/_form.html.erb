@@ -1,3 +1,5 @@
+<div id="map_canvas" style="width:300px; height:300px; float:right"></div>
+
 <%= form_for([@trip, @trip.events.build]) do |f| %>
 	<% if @event.errors.any? %>
 	<div id="error-list">
@@ -9,6 +11,9 @@
 		</ul>
 	</div>
 	<% end %>
+	
+	<%= f.hidden_field :latitude %>
+	<%= f.hidden_field :longitude %>
 	
 	<div class="field">
 		<%= f.label :title %><br />
@@ -43,3 +48,70 @@
 		<%= f.submit %>
 	</div>
 <% end %>		
+
+<script type="text/javascript">
+
+var geocoder;
+var map;
+var marker;
+   
+function initialize(){
+  var latlng = new google.maps.LatLng(<%= @trip.latitude.to_s %>, <%= @trip.longitude.to_s %>);
+  var options = {
+    zoom: 8,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+       
+  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+       
+  //GEOCODER
+  geocoder = new google.maps.Geocoder();
+       
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: true
+  });
+  
+  var mainMarker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"<%= @trip.destination %>"
+	  });
+               
+}
+
+$(document).ready(function() {
+         
+  initialize();
+  
+  
+  $(function() {
+    $("#event_location").autocomplete({
+      //This bit uses the geocoder to fetch address values
+      source: function(request, response) {
+        geocoder.geocode( {'address': request.term }, function(results, status) {
+          response($.map(results, function(item) {
+            return {
+              label:  item.formatted_address,
+              value: item.formatted_address,
+              latitude: item.geometry.location.lat(),
+              longitude: item.geometry.location.lng()
+            }
+          }));
+        })
+      },
+      //This bit is executed upon selection of an address
+      select: function(event, ui) {
+        $("#event_latitude").val(ui.item.latitude);
+        $("#event_longitude").val(ui.item.longitude);
+        var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
+        marker.setPosition(location);
+        map.setCenter(location);
+      }
+    });
+  });
+  
+});
+
+</script>

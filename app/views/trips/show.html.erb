@@ -11,10 +11,10 @@
 <h1><%= @trip.title %></h1>
 
 <h2>
-  <%= @trip.destination_city %>, <%= @trip.destination_state %>
+  <%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %>
 </h2>
 
-<div id="map"></div>
+<div id="map_canvas" style="width:725px; height:450px;"></div>
 
 <div>
   Your Itinerary
@@ -53,3 +53,47 @@
 </div>
 
 <%= link_to 'Add an event', new_trip_event_path(@trip) %>
+
+<script type="text/javascript">
+
+var geocoder;
+var map;
+var marker;
+   
+function initialize(){
+  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
+  var options = {
+    zoom: 8,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+       
+  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+       
+  //GEOCODER
+  geocoder = new google.maps.Geocoder();
+  
+	  var marker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"<%= @trip.destination %>"
+	  });
+	  
+  <% @trip.events.each do |place| %>
+	  myLatLng = new google.maps.LatLng(<%= place.latitude.to_s + ", " + place.longitude.to_s %>);
+	  var marker = new google.maps.Marker({
+        position: myLatLng, 
+        map: map, 
+        title:"<%= place.title %>"
+	  }); 
+  <% end %>
+               
+}
+
+$(document).ready(function() {
+         
+  initialize();
+  
+});
+
+</script>
