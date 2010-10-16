@@ -65,7 +65,7 @@ var marker;
 function initialize(){
   var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
   var options = {
-    zoom: 8,
+    zoom: 11,
     center: latlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -80,6 +80,7 @@ function initialize(){
         map: map, 
         title:"<%= @trip.destination %>"
 	  });
+  var bounds = new google.maps.LatLngBounds();
 	  
   <% @trip.events.each do |place| %>
 	  myLatLng = new google.maps.LatLng(<%= place.latitude %>, <%= place.longitude %>);
@@ -88,6 +89,9 @@ function initialize(){
         map: map, 
         title:"<%= place.title %>"
 	  }); 
+      bounds.extend(myLatLng);
+      map.fitBounds(bounds);
+
   <% end %>
                
 }

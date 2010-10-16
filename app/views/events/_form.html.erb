@@ -1,4 +1,4 @@
-<div id="map_canvas" style="width:300px; height:300px; float:right"></div>
+<div id="event_map_canvas" style="width:300px; height:300px; float:right"></div>
 
 <%= form_for([@trip, @event]) do |f| %>
 	<% if @event.errors.any? %>
@@ -63,7 +63,7 @@ function initialize(){
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
        
-  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+  map = new google.maps.Map(document.getElementById("event_map_canvas"), options);
        
   //GEOCODER
   geocoder = new google.maps.Geocoder();
@@ -90,7 +90,10 @@ $(document).ready(function() {
     $("#event_location").autocomplete({
       //This bit uses the geocoder to fetch address values
       source: function(request, response) {
-        geocoder.geocode( {'address': request.term }, function(results, status) {
+	    sw = new google.maps.LatLng(<%=@trip.latitude - 4 %>,<%=@trip.longitude - 4 %>);
+		ne = new google.maps.LatLng(<%=@trip.latitude + 4 %>,<%=@trip.longitude + 4 %>);
+		map_bounds = new google.maps.LatLngBounds(sw, ne);
+        geocoder.geocode( {'address': request.term,  'bounds':map_bounds }, function(results, status) {
           response($.map(results, function(item) {
             return {
               label:  item.formatted_address,
