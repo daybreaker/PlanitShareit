@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     logger.info @trip
     @event = @trip.events.new
+	authorize! :create, @event
 
     respond_to do |format|
       format.html # new.html.erb
@@ -21,11 +22,16 @@ class EventsController < ApplicationController
   end
   
   def index
-    
+    @trip = Trip.find(params[:trip_id])
+	@events = @trip.events
+   	authorize! :view, @events
+ 
   end
   
   def show
-    
+	@event = Event.find(params[:id])
+   	authorize! :view, @event
+
   end
   
 end

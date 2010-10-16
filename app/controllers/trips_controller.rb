@@ -3,11 +3,12 @@ class TripsController < ApplicationController
   
   def index
     # TODO Should be users' trips
-    @trips = (user_signed_in?) ? Trip.where("user_id = ?", current_user.id) : []
+    @trips = user_signed_in? ? current_user.trips : []
   end
 
   def show
     @trip = Trip.find(params[:id])
+	authorize! :view, @trip
   end
 
   def new
@@ -26,6 +27,8 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
+	authorize! :edit, @trip
+
   end
 
   def update
