@@ -1,4 +1,7 @@
 Planitshareit::Application.routes.draw do
-  devise_for :users
+  resources :trips do
+    resources :events
+  end
 
+  devise_for :users
 end
