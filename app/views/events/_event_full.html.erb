@@ -6,6 +6,6 @@
 		<div class="description">
 			<%= event_full.notes %>
 		</div>
-		<%= link_to "Edit", edit_trip_event_path(event_full.trip_id), {:rel => '#event-form-overlay'} %>
+		<%= link_to "Edit", edit_trip_event_path(@trip, event_full), {:rel => '#event-form-overlay'} %>
 	</div>
 </div>
