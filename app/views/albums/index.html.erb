@@ -24,7 +24,9 @@
 <div id="trip-info">
 
   <div id="side_links">
+    <% if @viewer_is_owner %>
     <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
+    <% end %>
   </div>
 
 	<div id="itenerary">
