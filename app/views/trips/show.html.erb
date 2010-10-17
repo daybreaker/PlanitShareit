@@ -30,77 +30,52 @@
 			<%= render :partial => 'day_overview' %>
 			<!-- end my conten -->
 			<div class="daily-view">
-				<div class="day">
-					<div class="head">
-						October 19
-					</div>
-					<div class="body">
-						<div class='col-1'>
-							<div class="full-event">
-								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
-								<div class="info">
-									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
-									<span class="time">2:00pm - 5:00pm</span>
-									<div class="description">
-										This is a description for an event that i made up just now howpefully i can make
-										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+				<div class="days items">
+					<% @trip.days.each do |day| %>
+					<div class="day item">
+						<div class="head"><%= day.strftime("%B %d") %></div>
+						<div class="body">
+							<% events = @trip.events.for_date(day.strftime("%Y-%m-%d")) %>
+							<% column_1 = events[0...(events.size/2.0).ceil] %>
+							<% column_2 = events[(events.size/2.0).ceil...events.size] %>
+							<div class='col-1'>
+								<% column_1.each do |event| %>
+								<div class="full-event">
+									<span class="title"><%= image_tag 'mapped.png' %> <%= event.title %></span>
+									<div class="info">
+										<span class="address"><%= event.location %></span><br/>
+										<span class="time">2:00pm - 5:00pm</span>
+										<div class="description">
+											<%= event.notes %>
+										</div>
 									</div>
 								</div>
+								<% end %>
 							</div>
-							<div class="full-event">
-								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
-								<div class="info">
-									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
-									<span class="time">2:00pm - 5:00pm</span>
-									<div class="description">
-										This is a description for an event that i made up just now howpefully i can make
-										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+							<div class='col-2'>
+								<% column_2.each do |event| %>
+								<div class="full-event">
+									<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+									<div class="info">
+										<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+										<span class="time">2:00pm - 5:00pm</span>
+										<div class="description">
+											This is a description for an event that i made up just now howpefully i can make
+											it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+										</div>
 									</div>
 								</div>
+								<% end %>
 							</div>
-							<div class="full-event">
-								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
-								<div class="info">
-									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
-									<span class="time">2:00pm - 5:00pm</span>
-									<div class="description">
-										This is a description for an event that i made up just now howpefully i can make
-										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
-									</div>
-								</div>
-							</div>
+							<div style="clear:both"></div>
 						</div>
-						<div class='col-2'>
-							<div class="full-event">
-								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
-								<div class="info">
-									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
-									<span class="time">2:00pm - 5:00pm</span>
-									<div class="description">
-										This is a description for an event that i made up just now howpefully i can make
-										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
-									</div>
-								</div>
-							</div>
-							<div class="full-event">
-								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
-								<div class="info">
-									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
-									<span class="time">2:00pm - 5:00pm</span>
-									<div class="description">
-										This is a description for an event that i made up just now howpefully i can make
-										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
-									</div>
-								</div>
-							</div>
-						</div>
-						<div style="clear:both"></div>
 					</div>
+					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<p id="prev-day">BACK</p><p id="next-day">FORWARD</p>
 	<div id="open_events">
 	  <div>Fly by the seat of your pants</div>
 	  <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>

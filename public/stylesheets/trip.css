@@ -155,18 +155,35 @@ img {
 	top: -21px;
 }
 
-#itenerary .daily-view {
-	min-height: 200px;
+#itenerary .daily-view .days {
+	float: none;
+	position: relative;
+/*	min-height: 300px;*/
 }
 
+
+#itenerary .daily-view .item {
+	width: 720px;
+/*	float: none;*/
+/*	min-height: 300px;*/
+}
+
+#itenerary .daily-view .item .body {
+	margin-top: 10px;
+}
+#itenerary .daily-view .col* {
+	
+}
 #itenerary .daily-view .col-1 {
 	width: 50%;
 	float: left;
 	border-right: 1px solid yellow;
+	min-height: 300px;
 }
 
 #itenerary .daily-view .col-2 {
 	margin-left: 50%;
+	min-height: 300px;
 }
 .links a.next {
   position: absolute;
@@ -181,7 +198,7 @@ img {
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
 */
-.scrollable {
+.scrollable, .daily-view {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
@@ -197,7 +214,7 @@ img {
 	it's enough that you set width and height for the root element and
 	not for this element.
 */
-.scrollable .items {
+.scrollable .items, .daily-view .days {
 	/* this cannot be too large */
 	width:20000em;
 	position:absolute;
@@ -209,6 +226,9 @@ img {
 	typically, this element is the one that *you* will style
 	the most.
 */
+.daily-view .days .day {
+	width: 720;
+}
 .items .item {
 	float:left;
 }
