@@ -28,6 +28,25 @@ $(function() {
 
     return false;
   });
+    
+    $("#trip_start_date","#new_trip").datepicker({
+													dateFormat: 'yy-mm-dd',
+													minDate: -14,
+												});
+    $("#trip_end_date","#new_trip").datepicker({
+													dateFormat: 'yy-mm-dd',
+													minDate: -14,
+												});
+	$("#trip_start_date","#new_trip").change(function(){
+		date = new Date($("#trip_start_date","#new_trip").val());
+		date.setDate(date.getDate()+2);
+		$("#trip_end_date","#new_trip").datepicker( "option", "minDate", date );
+	});
+	
+
+												
+												
+				
 });
 
 function success(msg) {
