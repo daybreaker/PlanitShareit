@@ -8,61 +8,56 @@
   </div>
 </div>
 
-<h1><%= @trip.title %><a href="#">Edit</a></h1>
+<div id="trip-head">
+	<h1><%= @trip.title %><a href="#">Edit</a></h1>
+	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
+</div>
+<div id="trip-map">
+	<div id="map_canvas" style="width:725px; height:450px;"></div>
+</div>
+<div id="trip-info">
+	<div id="itenerary">
+		<h3>Your Itinerary</h3>
+		<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
 
-<h2>
-  <%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %>
-</h2>
+		<div class="nav">
+			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
+			<ul class="tabs">
+				<li class="overview"></li>
+				<li class="daily"></li>
+			</ul>
+			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
+		</div>
+		<div style="clear: left;"></div>
+		<div class="tab-panes">
+			<!-- my content -->
+			<%= render :partial => 'day_overview' %>
+			<!-- end my conten -->
+			<div class="daily-view">
+				<div class="day">
+					<div class="head">
+						October 19
+					</div>
+					<div class="body">
+						<div class='col-1'>
 
-<div id="map_canvas" style="width:725px; height:450px;"></div>
-
-<div id="itenerary">
-	<h3>Your Itinerary</h3>
-	<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
-
-	<div class="nav">
-		<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
-		<ul class="tabs">
-			<li class="overview"></li>
-			<li class="daily"></li>
-		</ul>
-		<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
-	</div>
-	<div style="clear: left;"></div>
-	<div class="tab-panes">
-		<!-- my content -->
-		<div class="overview scrollable">
-			<div class="items">
-				<% @trip.days.each_slice(4) do |day_array| %>
-				<ul class="days item">
-					<% day_array.each do |day| %>
-					<li class="day<%= ' first' if day == day_array[0] %><%= ' last' if day == day_array[3] %>">
-						<div class="head"><%= day.strftime("%B %d") %></div>
-						<div class="body">
-							<%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
 						</div>
-					</li>
-					<% end %>
-				</ul>
-				<% end %>
-			</div>
-		</div>
-		<!-- end my conten -->
-		<div class="daily-view">
-			<div class="day">
-				Day Content
+						<div class='col-2'>
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<div id="open_events">
+	  <div>Fly by the seat of your pants</div>
+	  <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>
+	</div>
 </div>
 
-<div id="open_events">
-  <div>Fly by the seat of your pants</div>
-  <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>
-</div>
 
-
-<div id="form-overlay">
 <script type="text/javascript">
 
 var geocoder;
@@ -137,9 +132,6 @@ $(document).ready(function() {
 		$('ul.tabs').tabs('#itenerary div.tab-panes > div');
 
 		$('div.contentWrap form').live('submit', function () {
-		  $(this).find('.field_with_error').removeClass('field_with_error');
-		  $('#error-list').hide();
-
 			var action = $(this).attr('action');
 			$.post(action, $(this).serialize());
 			return false;
