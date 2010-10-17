@@ -2,6 +2,9 @@
   <div id="share_it">
     <%= link_to image_tag("share-it.png"), trip_albums_path(@trip) %>
   </div>
+
+  <div id="itenerary-menu">
+  </div>
 </div>
 
 <div id="trip-head">
@@ -14,7 +17,6 @@
 <div id="trip-info">
 	<div id="itenerary">
 		<h3><%= image_tag 'your-itinerary.png' %></h3>
-		<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
