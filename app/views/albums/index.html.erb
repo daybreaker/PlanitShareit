@@ -1,3 +1,8 @@
+<style type="text/css">
+#content {
+  min-height: 600px;
+}
+</style>
 <%= javascript_include_tag 'album_form.js' %>
 <div id="sidebar">
   <% if @viewer_is_owner %>
@@ -133,6 +138,7 @@ $(document).ready(function() {
 	$("#map_canvas").animate({height:"450px"},1000);
 	$("#map_canvas span a").html("hide map");
   });
+  
   
   $("#hide_map_link").click();
 });
