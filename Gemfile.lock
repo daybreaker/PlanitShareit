@@ -83,6 +83,7 @@ GEM
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
+    mysql (2.8.1)
     nokogiri (1.4.3.1)
     pickle (0.4.2)
       cucumber (>= 0.8)
@@ -149,6 +150,7 @@ DEPENDENCIES
   geokit
   jquery-rails
   mongrel
+  mysql (= 2.8.1)
   pickle
   rails (= 3.0.1)
   shoulda

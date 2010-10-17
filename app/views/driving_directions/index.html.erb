@@ -1,18 +1,32 @@
+<h2><%= @trip.start_date.to_date + (@day.to_i-1).days %></h2>
+<% if !@mapped_events.blank? %>
 <div id="map_canvas" style="width:66%; height:600px; float:left;"></div>
 <div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+<% end %>
 
 <div id="event_listing" style="clear:left; padding-top: 15px">
-<ul class="start_point">
-	<li>Hotel</li>
-</ul>
+<% if !@mapped_events.blank? %> 
+	<ul class="start_point">
+		<li>Hotel</li>
+	</ul>
 
-<ul id="sortable">
-<% @trip.events_on_day(@day.to_i,'mapped').each do |e| %>
-	<li id="e_<%= e.id %>" class="handle"><%= !e.title.blank? ? e.title : e.location %><span class="lat_long" style="display:none"><%= e.latitude %>, <%= e.longitude %></span></li>
+	<ul id="sortable">
+	<% @mapped_events.each do |e| %>
+		<li id="e_<%= e.id %>" class="handle"><%= !e.title.blank? ? e.title : e.location %><span class="lat_long" style="display:none"><%= e.location %></span></li>
+	<% end %>
+	</ul>
 <% end %>
-</ul>
 <%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>
 <%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>
+<br />
+<% if !@unmapped_events.blank? %>
+Unmappable Events:
+<ul>
+<% @unmapped_events.each do |e| %>
+	<li id="e_<%= e.id %>" class="handle"><%= !e.title.blank? ? e.title : e.location %><span class="lat_long" style="display:none"><%= e.location %></span></li>
+<% end %>
+</ul>
+<% end %>
 </div>
 
 
@@ -29,8 +43,9 @@
   function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
 
-    var latlng = new google.maps.LatLng(<%= @trip.latitude.to_s + ", " + @trip.longitude.to_s %>);
+    var latlng = new google.maps.LatLng(<%= @starting_location['latlng'] %>);
     var myOptions = {
+	  scrollwheel: false,
       zoom: 11,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -40,7 +55,7 @@
 	var mainMarker = new google.maps.Marker({
         position: latlng, 
         map: map, 
-        title:"<%= @trip.title %>",
+        title:"<%= @starting_location['name'] %>",
 		center: latlng
 	  }); 
 	  
@@ -67,7 +82,7 @@
   
   function calcRoute() {
 
-    var start = '<%= @trip.latitude.to_s + ", " + @trip.longitude.to_s %>';
+    var start = '<%= @starting_location['latlng'] %>';
     var waypts = [];
 	
     $("#sortable li").each(function(){
@@ -114,8 +129,10 @@
 
   
   $(function(){
+ <% if !@mapped_events.blank? %> 
 	initialize();
 	calcRoute();
+  <% end %>
 	$(function() {
 		$("#sortable").sortable({ 
 			update : function () { 
