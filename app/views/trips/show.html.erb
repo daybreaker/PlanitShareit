@@ -21,12 +21,12 @@
 	<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
 
 	<div class="nav">
-		<%= image_tag "left-arrow.png", {:class => 'back next browse right'} %>
+		<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
 		<ul class="tabs">
 			<li class="overview"></li>
 			<li class="daily"></li>
 		</ul>
-		<%= image_tag 'right-arrow.png', {:class => 'forward prev browse left'} %>
+		<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
 	</div>
 	<div style="clear: left;"></div>
 	<div class="tab-panes">
