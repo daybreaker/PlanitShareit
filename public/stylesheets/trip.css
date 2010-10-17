@@ -162,7 +162,7 @@ img {
 	border-right: none;
 }
 
-#itenerary li.day .head {
+#itenerary .day .head {
 	background-color:#F6F791;
 	height:25px;
 	padding-top:7px;
@@ -189,7 +189,19 @@ img {
 	top: -21px;
 }
 
+#itenerary .daily-view {
+	min-height: 200px;
+}
 
+#itenerary .daily-view .col-1 {
+	width: 50%;
+	float: left;
+	border-right: 1px solid yellow;
+}
+
+#itenerary .daily-view .col-2 {
+	margin-left: 50%;
+}
 .links a.next {
   position: absolute;
   right: 5px;
