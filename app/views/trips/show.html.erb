@@ -1,6 +1,6 @@
 <div id="sidebar">
   <div id="share_it">
-    <a href="#">Share it &gt;</a>
+    <%= image_tag("share-it.png") %>
   </div>
 
   <div id="print_itinerary">
@@ -16,27 +16,53 @@
 
 <div id="map_canvas" style="width:725px; height:450px;"></div>
 
-<div class="itinerary">
-  <span>Your Itinerary</span>
-  <%= link_to 'Add an event', new_trip_event_path(@trip), {:class => 'add_event', :rel => '#event-form-overlay'} %>
+<div id="itenerary">
+	<h3>Your Itinerary</h3>
+	<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
+
+	<div class="nav">
+		<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
+		<ul class="tabs">
+			<li class="overview"></li>
+			<li class="daily"></li>
+		</ul>
+		<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
+	</div>
+	<div style="clear: left;"></div>
+	<div class="tab-panes">
+		<!-- my content -->
+		<div class="overview scrollable">
+			<div class="items">
+				<% @trip.days.each_slice(4) do |day_array| %>
+				<ul class="days item">
+					<% day_array.each do |day| %>
+					<li class="day<%= ' first' if day == day_array[0] %><%= ' last' if day == day_array[3] %>">
+						<div class="head"><%= day.strftime("%B %d") %></div>
+						<div class="body">
+							<%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+						</div>
+					</li>
+					<% end %>
+				</ul>
+				<% end %>
+			</div>
+		</div>
+		<!-- end my conten -->
+		<div class="daily-view">
+			<div class="day">
+				Day Content
+			</div>
+		</div>
+	</div>
 </div>
-
-<div class="links">
-  <a class="prev browse left"><%= image_tag 'left-arrow.png' %></a>
-  <a href="#" class="switch overview active">Overview</a>
-  <a href="#" class="switch daily">Daily View</a>
-  <a class="next browse right"><%= image_tag 'right-arrow.png' %></a>
-</div>
-
-<%= render :partial => 'day_overview' %>
-
-<a class="next browse right"></a>
 
 <div id="open_events">
   <div>Fly by the seat of your pants</div>
   <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>
 </div>
 
+
+<div id="form-overlay">
 <script type="text/javascript">
 
 var geocoder;
@@ -107,8 +133,8 @@ $(document).ready(function() {
 
 
 <script type="text/javascript" charset="utf-8">
-	var $open_overlay;
 	$(function() {
+		$('ul.tabs').tabs('#itenerary div.tab-panes > div');
 
 		$('div.contentWrap form').live('submit', function () {
 		  $(this).find('.field_with_error').removeClass('field_with_error');
@@ -120,23 +146,22 @@ $(document).ready(function() {
 		});
 
 		$("a[rel]").live('click', function(e) {
-		  e.preventDefault();
-
-      $(this).overlay({
-  			mask: 'black',
-  			closeOnClick: false,
-  			load: true,
-  			onBeforeLoad: function() {
-  				// grab wrapper element inside content
-  				var wrap = this.getOverlay().find(".contentWrap");
-  				// load the page specified in the trigger
-  				wrap.load(this.getTrigger().attr("href"));
-  				$open_overlay = this;
-  			},
-  			onClose: function() {
-  			  reset_form('.event_form');
-  			}
-  		});
-	  });
+			e.preventDefault();
+			$(this).overlay({
+				mask: 'black',
+				closeOnClick: false,
+				load: true,
+				onBeforeLoad: function() {
+					// grab wrapper element inside content
+					var wrap = this.getOverlay().find(".contentWrap");
+					// load the page specified in the trigger
+					wrap.load(this.getTrigger().attr("href"));
+					$open_overlay = this;
+				},
+				onClose: function() {
+					reset_form('.event_form');
+				}
+			});
+		});
 	});
 </script>

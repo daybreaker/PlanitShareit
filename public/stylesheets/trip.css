@@ -5,6 +5,9 @@ h1 a {
   text-decoration: none;
 }
 
+img {
+	border: none;
+}
 .itinerary {
   width: 726px;
   margin-bottom: 10px;
@@ -63,6 +66,130 @@ h1 a {
   left: 5px;
 }
 
+/** ITENERARY **/
+
+#itenerary {
+	width: 726px;
+	margin-top: 25px;
+	overflow: visible;
+}
+
+#itenerary h3 {
+	font-size: 1.3em;
+	display: inline;
+}
+
+#itenerary a.add_event {
+	float: right;
+	margin-top: 13px
+	
+}
+
+#itenerary .nav {
+	background-color:#A2CED0;
+	border-bottom:1px solid #A2CED0;
+	height:20px;
+	padding-top:10px;
+	margin-top:15px;
+}
+
+#itenerary div.slide {
+	border: 2px;
+}
+
+#itenerary .nav .back {
+	bottom:10px;
+	float:left;
+	left:5px;
+	position:relative;
+}
+
+#itenerary .nav .forward {
+	float: right;
+	position: relative;
+	bottom: 10px;
+	right: 5px;
+}
+
+#itenerary .nav .daily {
+	background-image: url(../images/daily.png);
+	background-repeat: no-repeat;
+}
+
+#itenerary .nav .overview {
+	background-image: url(../images/overview.png);
+	background-repeat: no-repeat;
+}
+
+#itenerary ul {
+	list-style-type: none;
+	margin: auto;
+}
+
+#itenerary ul.days {
+	height: 400px;
+	margin: 0;
+	padding: 0;
+}
+
+#itenerary .nav ul {
+	position: relative;
+	left: 200px;
+}
+
+#itenerary .nav li {
+	float: left;
+	padding: 2px;
+	padding-bottom: 10px;
+	height: 30px;
+	width: 120px;
+	position: relative;
+	bottom: 19px;
+}
+
+#itenerary li.day {
+	float: left;
+	width: 179px;
+	border: 1px solid #F6F791;
+	height: 100%;
+}
+
+#itenerary li.day.first {
+	border-left: none;
+}
+
+#itenerary li.day.last {
+	border-right: none;
+}
+
+#itenerary li.day .head {
+	background-color:#F6F791;
+	height:25px;
+	padding-top:7px;
+	text-align:center;
+	width: 100%;
+	font-weight: bold;
+	font-size: 12pt;
+	color: #3C6079
+}
+
+
+#itenerary .nav li.daily.current {
+	background-image: url(../images/daily-active.png);
+}
+#itenerary .nav li.overview.current {
+	background-image: url(../images/overview-active.png);
+
+}
+
+
+#itenerary .tab-panes {
+	border: 2px solid #F6F791;
+	position: relative;
+	top: -21px;
+}
+
+
 .links a.next {
   position: absolute;
   right: 5px;
@@ -82,7 +209,7 @@ h1 a {
 	overflow:hidden;
 	width: 720px;
 	height:300px;
-	border: 3px solid #F6F692;
+/*	border: 3px solid #F6F692;*/
 	border-top: none;
 }
 
@@ -113,6 +240,14 @@ h1 a {
   background-color: #fff;
   border-left: 3px solid #E2E9A3;
   width: 178px;
+  height: 300px;
+}
+
+.items div div.daily-date {
+  float: left;
+  background-color: #fff;
+  border-left: 3px solid #E2E9A3;
+  width: 700px;
   height: 300px;
 }
 

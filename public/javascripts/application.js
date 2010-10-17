@@ -12,6 +12,7 @@ $(function() {
     $(this).parent().prevAll('dt').eq(1).click();
     return false;
   });
+
 });
 
 function success(msg,type) {
