@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = @trip.albums
+    @viewer_is_owner = user_signed_in? && (@trip.user.username == current_user.username)
   end
 
   def show

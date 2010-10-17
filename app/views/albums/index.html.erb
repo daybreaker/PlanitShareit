@@ -1,22 +1,29 @@
 <%= javascript_include_tag 'album_form.js' %>
 <div id="sidebar">
+  <% if @viewer_is_owner %>
   <div id="share_it">
     <%= link_to image_tag("plan-it.png"), trip_url(@trip) %>
   </div>
-
+  
   <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
+  <% end %>
 </div>
 
 <div id="trip-head">
+	<% if @viewer_is_owner %>
 	<h1><%= @trip.title %><a href="#">Edit</a></h1>
+	<% else %>
+	<h1><%= @trip.user.username.capitalize %>'s Trip To</h1>
+	<% end %>
 	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
+	
 </div>
 <div id="trip-map">
 	<div id="map_canvas" style="width:725px; height:450px;"></div>
 </div>
 <div id="trip-info">
 	<div id="itenerary">
-		<h3>Your Profile</h3>
+		<h3><%= @viewer_is_owner ? "Your Albums" :  @trip.user.username.capitalize + "'s Photos"%></h3>
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
@@ -32,7 +39,7 @@
 			<div class="albums">
         <%= render @trip.albums %>
 
-        <% if @trip.albums.empty? %>
+        <% if (@trip.albums.empty? && @viewer_is_owner) %>
           <a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a>
         <% end %>
       </div>
