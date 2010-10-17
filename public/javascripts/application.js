@@ -5,7 +5,7 @@ $(function() {
 	prev: "#prev-day",
 	next: "#next-day",
 	});
-  $('#new_trip').easyAccordion();
+  $('#new_trip').easyAccordion({slideNum:false});
 
   $('#new_trip a.next').click(function() {
     $(this).parent().next('dt').activateSlide();
@@ -16,6 +16,11 @@ $(function() {
     $(this).parent().prevAll('dt').eq(1).click();
     return false;
   });
+  
+  $("#trip_destination","#new_trip").placeholder();
+  $("#trip_accomodation_name","#new_trip").placeholder();
+  $("#trip_start_date","#new_trip").placeholder();
+  $("#trip_end_date","#new_trip").placeholder();
 
   $('#share_it').live('click', function() {
     $('#content').flip({
@@ -28,6 +33,25 @@ $(function() {
 
     return false;
   });
+    
+    $("#trip_start_date","#new_trip").datepicker({
+													dateFormat: 'yy-mm-dd',
+													minDate: -14,
+												});
+    $("#trip_end_date","#new_trip").datepicker({
+													dateFormat: 'yy-mm-dd',
+													minDate: -14,
+												});
+	$("#trip_start_date","#new_trip").change(function(){
+		date = new Date($("#trip_start_date","#new_trip").val());
+		date.setDate(date.getDate()+2);
+		$("#trip_end_date","#new_trip").datepicker( "option", "minDate", date );
+	});
+	
+
+												
+												
+				
 });
 
 function success(msg) {

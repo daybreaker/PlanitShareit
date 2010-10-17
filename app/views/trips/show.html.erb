@@ -3,15 +3,8 @@
     <%= link_to image_tag("share-it.png"), trip_albums_path(@trip) %>
   </div>
 
-  <div id="itenerary-menu">
-	<ul>
-		<li><a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay">Add Event</a></li>
-		<li>Do Something</li>
-		<li>So Something Else</li>
-	</ul>
-  </div>
+  
 </div>
-
 <div id="trip-head">
 	<h1><%= @trip.title %><a href="#">Edit</a></h1>
 	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
@@ -20,35 +13,37 @@
 	<div id="map_canvas" style="width:690px; height:450px;"></div>
 </div>
 <div id="trip-info">
+	<div id="itenerary-menu">
+		<ul>
+			<li><a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay">Add Event</a></li>
+			<li><%= link_to "Driving Directions", trip_path(@trip) + '/driving' %></li>
+			<li>So Something Else</li>
+		</ul>
+	</div>
 	<div id="itenerary">
 		<h3><%= image_tag 'your-itinerary.png' %></h3>
 		
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
-			<%# image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
+			<%= image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right swapped'} %>
 			<ul class="tabs">
 				<li class="overview"></li>
 				<li class="daily"></li>
 			</ul>
 			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
-			<%# image_tag "right-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
+			<%= image_tag "right-arrow.png", {:id => 'next-day', :class => 'forward browse left swapped'} %>
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
-			<!-- my content -->
 			<%= render :partial => 'day_overview' %>
-			<!-- end my conten -->
-			<div class="daily-view">
 			<%= render :partial => 'day_listing' %>
-			</div>
+		</div>
+		<div class="unscheduled-events">
+		<%= render :partial => 'unscheduled_events' %>
 		</div>
 	</div>
-	<p id="prev-day">BACK</p><p id="next-day">FORWARD</p>
-	<div id="open_events">
-	  <div>Fly by the seat of your pants</div>
-	  <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>
-	</div>
+	
 </div>
 
 
@@ -126,7 +121,22 @@ $(document).ready(function() {
 
 <script type="text/javascript" charset="utf-8">
 	$(function() {
-		$('ul.tabs').tabs('#itenerary div.tab-panes > div');
+		$('ul.tabs').tabs('#itenerary div.tab-panes > div', {
+			onClick: function  () {
+				if (this.getIndex() == 0) {
+					$('.browse.right').addClass('swapped');
+					$('.browse.left').addClass('swapped');
+					$('#prev-day').removeClass('swapped');
+					$('#next-day').removeClass('swapped');
+				} else {
+					$('.browse.right').removeClass('swapped');
+					$('.browse.left').removeClass('swapped');
+					$('#prev-day').addClass('swapped');
+					$('#next-day').addClass('swapped');
+				}
+				
+			}
+		});
 
 		$('div.contentWrap form').live('submit', function () {
 			var action = $(this).attr('action');

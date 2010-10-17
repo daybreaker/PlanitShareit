@@ -1,6 +1,8 @@
 <% if @event.save %>
   $open_overlay.close();
   $("div.overview").html("<%= escape_javascript(render(:partial => 'trips/day_overview'))%>");
+  $("div.daily-view").html("<%= escape_javascript(render(:partial => 'trips/day_listing'))%>");
+  $("div.unscheduled-events").html("<%= escape_javascript(render(:partial => 'trips/unscheduled_events'))%>");
   success('Event successfully created.');
 <% else %>
   $('#<%= @event.errors.keys.map {|x| "event_#{x.to_s}" }.join(",#") %>').addClass('field_with_error');

@@ -12,6 +12,9 @@ class Trip < ActiveRecord::Base
 
   before_create :set_title
   before_save :trip_geocode
+  before_validation :time_add
+  
+  attr_accessor :no_accomodation
   
   def starting_location
 	loc = {}
@@ -68,6 +71,12 @@ class Trip < ActiveRecord::Base
 		self.accomodation_latitude=accom_geocode.lat
 		self.accomodation_longitude=accom_geocode.lng
 	end
+	self
+  end
+  
+  def time_add
+	self.start_date = self.start_date.to_s + ' 00:00:00'
+	self.end_date = self.end_date.to_s  + ' 00:00:00'
 	self
   end
   
