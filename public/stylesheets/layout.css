@@ -3,6 +3,7 @@ body {
   color: #333;
   background: #9DCDD9 url(/images/background.png) repeat-x;
   margin: 0;
+  margin-bottom: 30px;
 }
 
 img {

@@ -1,4 +1,12 @@
 <div class="album">
-  <%= album.name %><br />
-  <%= album.created_at.strftime '%B %d, %Y' %>
+  <div class="image">
+  <%= link_to image_tag(album.images.first.file.thumb.url, :width => 165, :height => 125), [@trip, album] unless album.images.empty? %>
+  </div>
+
+  <div class="album_info">
+    <div class="title"><%= link_to album.title, [@trip, album] %></div>
+    <div class="album_stats">
+      <%= album.images.count %> Photos | <%= album.created_at.strftime '%B %d, %Y' %>
+    </div>
+  </div>
 </div>

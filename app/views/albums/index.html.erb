@@ -3,8 +3,6 @@
   <div id="share_it">
     <%= link_to image_tag("plan-it.png"), trip_url(@trip) %>
   </div>
-
-  <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
 </div>
 
 <div id="trip-head">
@@ -15,6 +13,11 @@
 	<div id="map_canvas" style="width:725px; height:450px;"></div>
 </div>
 <div id="trip-info">
+
+  <div id="side_links">
+    <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
+  </div>
+
 	<div id="itenerary">
 		<h3>Your Profile</h3>
 
@@ -35,6 +38,8 @@
         <% if @trip.albums.empty? %>
           <a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a>
         <% end %>
+
+        <br clear="both" />
       </div>
       <!-- End Albums -->
 

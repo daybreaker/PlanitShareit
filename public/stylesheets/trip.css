@@ -14,10 +14,17 @@ img {
 }
 
 #trip-info {
+  position: relative;
 	background-image: url(../images/background-fade.png);
 	background-repeat: repeat-x;
 }
 
+#trip-info #side_links {
+  display:block; 
+  position: absolute; 
+  top: 0; 
+  right: 30px;
+}
 
 .itinerary {
   width: 726px; 
@@ -539,9 +546,3 @@ div.overlay input.field_with_error {
   padding: 10px
 }
 /****** /Album form ******/
-
-.albums .album {
-  float: left;
-  width: 200px;
-  height: 240px;
-}
