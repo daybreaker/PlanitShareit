@@ -28,6 +28,13 @@ $(function() {
 
     return false;
   });
+  
+  var cal_options = {
+	dateFormat: 'yy-mm-dd',
+  }
+  
+  $("#trip_start_date","#new_trip").datepicker(cal_options);
+  $("#trip_end_date","#new_trip").datepicker(cal_options);
 });
 
 function success(msg,type) {
