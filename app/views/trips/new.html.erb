@@ -12,40 +12,43 @@
 
 <% form_for @trip do |f| %>
   <!-- User -->
+  <%= image_tag('create-trip-header.png') %><br /><br />
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <dl>
     <!-- Destination -->
-    <dt>Destination</dt>
-    <dd>
-      <% if @trip.errors['destination'] %>
-        <div class="error"><%= @trip.errors.full_messages[@trip.errors.keys.index(:destination)] %></div>
-      <% end %>
+    <dt id="destination">Destination</dt>
+    <dd id="destination_dd">
+		<div>
+		  <% if @trip.errors['destination'] %>
+			<div class="error"><%= @trip.errors.full_messages[@trip.errors.keys.index(:destination)] %></div>
+		  <% end %>
 
-      <%= f.label :destination, 'Where are you going?' %>
-      <%= f.text_field :destination %>
-      <a href="#" class="next">Continue</a>
+		  <%= f.label :destination, 'Where are you going?' %>
+		  <%= f.text_field :destination, {:placeholder => "City, State"} %>
+		</div>
+	  <a href="#" class="next"><%= image_tag('next-button.png') %></a>
     </dd>
 
     <!-- Duration -->
-    <dt>Duration</dt>
-    <dd>
+    <dt id="duration">Duration</dt>
+    <dd id="duration_dd">
       <% ['start_date', 'end_date'].each do |error| %>
         <%= content_tag 'div', @trip.errors.full_messages[@trip.errors.keys.index(error.to_sym)] if @trip.errors[error] %>
       <% end %>
 
-      <p>When will you be there?</p>
+      <table class="duration" border="0" cellspacing="0" cellpadding="4">
+		<tr>
+			<td align="right"><%= f.label :start_date, "When are you going?" %></td>
+			<td><%= f.text_field :start_date, {:placeholder => "Select a date"} %></td>
+        </tr>
+		<tr>
+			<td align="right"><%= f.label :end_date, "When are you coming back?" %></td>
+			<td><%= f.text_field :end_date, {:placeholder => "Select a date"} %></td>
+		</tr>
+      </table>
 
-      <div class="duration">
-        <%= f.label :start_date, 'Arrival' %>
-        <%= f.text_field :start_date %>
-        <br />
-        <%= f.label :end_date, 'Departure' %>
-        <%= f.text_field :end_date %>
-      </div>
-
-      <a href="#" class="prev">Previous</a>
-      <a href="#" class="next">Continue</a>
+      <a href="#" class="next"><%= image_tag('next-button.png') %></a>
     </dd>
 
     <!-- Travel Info -->
@@ -68,13 +71,24 @@
     </dd>
 -->
     <!-- Accomodations -->
-    <dt>Accomodations</dt>
-    <dd>
-      <%= f.label :accomodation_name %>
-      <%= f.text_field :accomodation_name %>
+    <dt id="accomodation">Accomodations</dt>
+    <dd id="accomodation_dd">
+	
+		<div>
+			<%= f.label :accomodation_name, "Where are you staying?" %>
+			<%= f.text_field :accomodation_name, {:placeholder=>"Hotel Name, Address"} %>
+			<br /><br />
+			<div style="margin:0; padding:0 0 0 170px">
+			<%= f.check_box :no_accomodation %>
+			<%= f.label :no_accomodation, "I don't know yet" %>
+			</div>
+		</div>
 
-      <a href="#" class="prev">Previous</a>
-      <%= f.submit 'Create trip' %>
+      <%= image_submit_tag('create-trip-button.png', :class=>"next") %>
     </dd>
   </dl>
 <% end %>
+<div id="trip_intro">
+	<p>You can choose to keep your profile and keep all of the cool stuff to yourself, or make it public and share your experiences with the world.</p>
+</div>
+<br /><br />

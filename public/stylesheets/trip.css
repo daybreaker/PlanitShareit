@@ -351,6 +351,10 @@ img {
   padding: 10px;
 }
 
+.placeholder{
+	color:#b6b6b6;
+}
+
 /* UNLESS YOU KNOW WHAT YOU'RE DOING, DO NOT CHANGE THE FOLLOWING RULES */
 .easy-accordion{display:block;position:relative;overflow:hidden;padding:0;margin:0}
 .easy-accordion dt,.easy-accordion dd{margin:0;padding:0}
@@ -367,13 +371,71 @@ img {
 /* Style these */
 #new_trip dd p {line-height:120%}
 
-#new_trip{width:800px;height:245px;padding:30px;background:#fff; margin: 0 auto;}
-#new_trip dl{width:800px;height:245px}
-#new_trip dt{height:46px;line-height:44px;text-align:right;padding:0 15px 0 0;font-size:0.8em;font-weight:bold;font-family: Tahoma, Geneva, sans-serif;text-transform:uppercase;letter-spacing:1px;background:#fff url(/images/slide-title-inactive-1.jpg) 0 0 no-repeat;color:#26526c}
-#new_trip dt.active{cursor:pointer;color:#fff;background:#fff url(/images/slide-title-active-1.jpg) 0 0 no-repeat}
+#new_trip{width:690px;height:323px;padding:30px;background:#fff;}
+#new_trip dl{width:690px;height:323px}
+#new_trip dt{height:46px;line-height:44px;text-align:right;padding:0 15px 0 0;font-size:0.8em;font-weight:bold;font-family: Tahoma, Geneva, sans-serif;text-transform:uppercase;letter-spacing:1px;color:#26526c}
+#new_trip dt.active{cursor:pointer;color:#fff;}
 #new_trip dt.hover{color:#68889b;}
 #new_trip dt.active.hover{color:#fff}
-#new_trip dd{padding:25px;background:url(/images/slide.jpg) bottom left repeat-x;border:1px solid #dbe9ea;border-left:0;margin-right:3px}
+
+#new_trip dt#destination{
+	background:#fff url(/images/destination.png) 0 0 no-repeat;
+}
+#new_trip dt#destination.active{
+	background:#fff url(/images/destination-active.png) 0 0 no-repeat;
+}
+#new_trip dt#accomodation{
+	background:#fff url(/images/accommodation.png) 0 0 no-repeat;
+}
+#new_trip dt#accomodation.active{
+	background:#fff url(/images/accommodation-active.png) 0 0 no-repeat;
+}
+#new_trip dt#duration{
+	background:#fff url(/images/duration.png) 0 0 no-repeat;
+}
+#new_trip dt#duration.active{
+	background:#fff url(/images/duration-active.png) 0 0 no-repeat;
+}
+
+
+
+#new_trip dd{padding:25px;background:#fff url(/images/slide.jpg) bottom left repeat-x;border:1px solid #dbe9ea;border-left:0;margin-right:3px}
+#new_trip dd input[type=text]{
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+#new_trip dd a{
+  outline:0;
+}
+#new_trip dd#destination_dd.active{
+	background:#fff url(/images/airplane-background.png) 0 70px no-repeat;
+}
+
+#new_trip dd#destination_dd div{
+	padding:30px;
+	margin:0 auto;
+}
+#new_trip dd#duration_dd.active{
+	background:#fff url(/images/airplane-background.png) 100px 70px no-repeat;
+}
+
+#new_trip dd#duration_dd table{
+	padding-top:79px;
+	padding-right:50px;
+	margin:0 auto;
+}
+#new_trip dd#accomodation_dd.active{
+	background:#fff url(/images/airplane-background.png) 205px 70px no-repeat;
+}
+
+#new_trip dd#accomodation_dd div{
+	padding-left:10px;
+	padding-top:90px;
+	margin:0 auto;
+}
+
+
 #new_trip .slide-number{color:#68889b;left:10px;font-weight:bold}
 #new_trip .active .slide-number{color:#fff;}
 #new_trip a{color:#68889b}
@@ -387,7 +449,8 @@ img {
 }
 
 #new_trip dd a.next,
-#new_trip dd input[type=submit] {
+#new_trip dd input[type=submit],
+#new_trip dd input[type=image] {
   position: absolute;
   right: 30px;
   bottom: 25px;
@@ -399,6 +462,23 @@ img {
   left: 30px;
   bottom: 25px;
   display: block;
+}
+
+
+#trip_intro{
+	padding:20px 10px 10px;
+	border:1px solid #dbe9ea;
+	background: #fff url('../images/plan-live-share-header.png') 10px 10px no-repeat;
+	display:block;
+	width: 190px;
+	position: absolute;
+	top: 100px;
+	right: 20px;
+}
+
+#trip_intro p{
+	margin-top: 85px;
+	font-size: 85%;
 }
 
 /********** SORTABLE STYLES ************/
