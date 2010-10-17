@@ -299,6 +299,7 @@ h1 a {
 	height: 500px;
 	width: 650px;
 	margin-top: 0px;
+	position: absolute;
 }
 
 #event-form-overlay div.contentWrap {
