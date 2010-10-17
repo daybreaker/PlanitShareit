@@ -1,6 +1,6 @@
 <div id="sidebar">
   <div id="share_it">
-    <%= image_tag("share-it.png") %>
+    <%= link_to image_tag("share-it.png"), trip_albums_path(@trip) %>
   </div>
 </div>
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
 </script>
 
-<div id="event-form-overlay">
+<div id="event-form-overlay" style="display:none">
 	<!-- the external content is loaded inside this tag -->
 	<div class="contentWrap"></div>
 
