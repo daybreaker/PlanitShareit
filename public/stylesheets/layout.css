@@ -197,3 +197,7 @@ strong {
 	font-size: 14pt;
 	padding: 5px;
 }
+
+#side_links a{
+	outline: 0;
+}
