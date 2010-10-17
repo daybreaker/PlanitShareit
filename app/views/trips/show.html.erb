@@ -137,6 +137,9 @@ $(document).ready(function() {
 		$('ul.tabs').tabs('#itenerary div.tab-panes > div');
 
 		$('div.contentWrap form').live('submit', function () {
+		  $(this).find('.field_with_error').removeClass('field_with_error');
+		  $('#error-list').hide();
+
 			var action = $(this).attr('action');
 			$.post(action, $(this).serialize());
 			return false;

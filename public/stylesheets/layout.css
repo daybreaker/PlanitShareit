@@ -4,6 +4,10 @@ body {
   color: #333;
 }
 
+img {
+  border: none;
+}
+
 #header, #content, #footer {
   width: 970px;
   margin: 0 auto;

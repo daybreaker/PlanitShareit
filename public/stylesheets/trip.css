@@ -489,4 +489,14 @@ img {
   border: 1px solid #ccc;
 }
 
+.event_form .errors {
+  display: none;
+  color: #A72A3C;
+  margin: 5px;
+}
+
+.event_form input.field_with_error {
+  border: 1px solid #A72A3C;
+}
+
 /****** /Event form ******/
