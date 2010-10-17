@@ -22,14 +22,19 @@
 		  <td><%= f.text_field :location %></td>
 		</tr>
 
+		<tr>
+	    <th><%= f.label :event_start, "Event date" %></th>
+		  <td><%= f.select :event_start, @trip.days %></td>
+		</tr>
+		
 	  <tr>
-	    <th><%= f.label :start_date %></th>
-		  <td><%= f.text_field :start_date %></td>
+	    <th><%= f.label :start_time %></th>
+		  <td><%= f.select :start_time, Event.build_time %></td>
 		</tr>
 
 	  <tr>
-	    <th><%= f.label :end_date %></th>
-		  <td><%= f.text_field :end_date %></td>
+	    <th><%= f.label :end_time %></th>
+		  <td><%= f.select :end_time, Event.build_time %></td>
 		</tr>
 
 	  <tr>
@@ -51,3 +56,4 @@
       </td>
     </tr>
 	</table>
+	
