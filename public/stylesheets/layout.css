@@ -47,9 +47,7 @@ img {
 #content #sidebar {
   float: right;
   position: relative;
-  background-color: #eee;
   width: 200px;
-  height: 300px;
   padding: 15px;
 }
 
