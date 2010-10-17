@@ -4,6 +4,8 @@ class Trip < ActiveRecord::Base
   validates_presence_of :end_date
   
   has_many :events
+  has_many :albums
+
   belongs_to :user
 
   default_scope where(:status => 'active')
