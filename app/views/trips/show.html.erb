@@ -9,20 +9,22 @@
 	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
 </div>
 <div id="trip-map">
-	<div id="map_canvas" style="width:725px; height:450px;"></div>
+	<div id="map_canvas" style="width:690px; height:450px;"></div>
 </div>
 <div id="trip-info">
 	<div id="itenerary">
-		<h3>Your Itinerary</h3>
+		<h3><%= image_tag 'your-itinerary.png' %></h3>
 		<a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay"><%= image_tag "add-event.png" %></a>
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
+			<%# image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
 			<ul class="tabs">
 				<li class="overview"></li>
 				<li class="daily"></li>
 			</ul>
 			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
+			<%# image_tag "right-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">

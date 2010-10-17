@@ -2,6 +2,9 @@ body {
   margin: 25px;
   font-family: arial;
   color: #333;
+  background-image: url(../images/background.png);
+  background-repeat: repeat-x;
+  background-color: #A1CDCF;
 }
 
 img {
@@ -11,6 +14,7 @@ img {
 #header, #content, #footer {
   width: 970px;
   margin: 0 auto;
+  background-color: white;
 }
 
 #header {
@@ -30,7 +34,7 @@ img {
 
 #content {
   border: 1px solid #ccc;
-  padding: 20px;
+/*  padding: 20px;*/
 }
 
 #content h1 {
@@ -47,8 +51,8 @@ img {
 #content #sidebar {
   float: right;
   position: relative;
-  width: 200px;
-  padding: 15px;
+/*  width: 200px;*/
+/*  padding: 15px;*/
 }
 
 #map_canvas{

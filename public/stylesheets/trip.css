@@ -8,6 +8,17 @@ h1 a {
 img {
 	border: none;
 }
+
+#trip-info, #trip-map, #trip-head {
+	padding: 0 20px;
+}
+
+#trip-info {
+	background-image: url(../images/background-fade.png);
+	background-repeat: repeat-x;
+}
+
+
 .itinerary {
   width: 726px;
   margin-bottom: 10px;
@@ -36,6 +47,7 @@ img {
 	width: 726px;
 	margin-top: 25px;
 	overflow: visible;
+	padding-top: 5px;
 }
 
 #itenerary h3 {
@@ -168,6 +180,10 @@ img {
 /*	min-height: 300px;*/
 }
 
+#next-day {
+	display:none;
+}
+
 #itenerary .daily-view .item .body {
 	margin-top: 10px;
 }
@@ -291,8 +307,8 @@ img {
 }
 
 #share_it {
-  position: absolute;
-  left: 11px;
+  position: relative;
+  left: 24px;
   top: 83px;
   width: 260px;
   height: 30px;
@@ -407,6 +423,7 @@ img {
 	width: 650px;
 	margin-top: 0px;
 	position: absolute;
+	display: none;
 }
 
 #event-form-overlay div.contentWrap {
