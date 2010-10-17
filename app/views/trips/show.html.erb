@@ -1,6 +1,6 @@
 <div id="sidebar">
   <div id="share_it">
-    <a href="#">Share it &gt;</a>
+    <%= image_tag("share-it.png") %>
   </div>
 
   <div id="print_itinerary">
@@ -16,36 +16,121 @@
 
 <div id="map_canvas" style="width:725px; height:450px;"></div>
 
-<div class="itinerary">
-  <span>Your Itinerary</span>
-  <a href="#" class="add_event">Add Event</a>
+
+
+<div id="itenerary">
+	<h3>Your Itinerary</h3>
+	<a href="#" class="add_event"><%= image_tag "add-event.png" %></a>
+
+	<div class="nav">
+		<%= image_tag "left-arrow.png", {:class => 'back'} %>
+		<ul class="tabs">
+			<li class="overview"></li>
+			<li class="daily"></li>
+		</ul>
+		<%= image_tag 'right-arrow.png', {:class => 'forward'} %>
+	</div>
+	<div style="clear: both"></div>
+	<div class="panes">
+		<div class="overview">
+			<div class="slide">
+				<% @trip.days.each_slice(4) do |day_array| %>
+				<ul class="days">
+					<% day_array.each do |day| %>
+					<li class="day<%= ' first' if day == day_array[0] %><%= ' last' if day == day_array[3] %>">
+						<div class="head"><%= day.strftime("%B %d") %></div>
+						<div class="body">
+							<%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+						</div>
+					</li>
+					<% end %>
+				</ul>
+				<% end %>
+			</div>
+		</div>
+		<div class="daily-view">
+			<div class="day">
+				Day Content
+			</div>
+		</div>
+	</div>
+</div>
+	
+</div>
+<ul class="tabs">
+	<li>Overview</li>
+	<li>Daily View</li>
+</ul>
+<div id="itenerary-panes">
+	<div class="overview">
+		<ul class="days">
+			<li class="day"></li>
+			<li class="day"></li>
+			<li class="day"></li>
+			<li class="day"></li>
+		</ul>
+	</div>
+	<div class="daily-view">
+		<div class="day">
+			
+		</div>
+	</div>
 </div>
 
-<div class="links">
+
+<!-- <div class="links">
   <a class="prev browse left"><%= image_tag 'left-arrow.png' %></a>
+	
   <a href="#" class="switch overview active">Overview</a>
   <a href="#" class="switch daily">Daily View</a>
   <a class="next browse right"><%= image_tag 'right-arrow.png' %></a>
 </div>
 
-<div class="scrollable">
-  <div class="items">
+<ul class="tabs">
+	<li>Overview</li>
+	<li> Daily View</li>
+</ul>
+	
+<div class="panes">
+	<div class="scrollable">
+	  <div class="items">
 
-    <% @trip.days.each_slice(4) do |day_array| %>
-      <div class="item">
-        <% day_array.each do |day| %>
+	    <% @trip.days.each_slice(4) do |day_array| %>
+	      <div class="item">
+	        <% day_array.each do |day| %>
 
-          <div class="date<%= ' first' if day == day_array[0] %>">
-            <div class="title"><%= day.strftime("%B %d") %></div>
-            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
-          </div>
+	          <div class="date<%= ' first' if day == day_array[0] %>">
+	            <div class="title"><%= day.strftime("%B %d") %></div>
+	            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+	          </div>
 
-        <% end %>
-      </div>
-    <% end %>
+	        <% end %>
+	      </div>
+	    <% end %>
 
-  </div>
-</div>
+	  </div>
+	</div>
+	<div class="scrollable">
+	  <div class="items">
+
+	    <% @trip.days.each do |day| %>
+	      <div class="item">
+	          <div class="daily-date">
+	            <div class="title"><%= day.strftime("%B %d") %></div>
+	            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+	          </div>
+	      </div>
+	    <% end %>
+
+	  </div>
+	</div>
+</div> -->
+
+
+
+
+
+
 
 <a class="next browse right"></a>
 
@@ -56,49 +141,7 @@
   <%= render :partial => 'events/event_open', :collection => @trip.events.open %>
 </div>
 
-<script type="text/javascript">
 
-var geocoder;
-var map;
-var marker;
-   
-function initialize(){
-  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
-  var options = {
-    zoom: 8,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-       
-  map = new google.maps.Map(document.getElementById("map_canvas"), options);
-       
-  //GEOCODER
-  geocoder = new google.maps.Geocoder();
-  
-	  var marker = new google.maps.Marker({
-        position: latlng, 
-        map: map, 
-        title:"<%= @trip.destination %>"
-	  });
-	  
-  <% @trip.events.each do |place| %>
-	  myLatLng = new google.maps.LatLng(<%= place.latitude.to_s + ", " + place.longitude.to_s %>);
-	  var marker = new google.maps.Marker({
-        position: myLatLng, 
-        map: map, 
-        title:"<%= place.title %>"
-	  }); 
-  <% end %>
-               
-}
-
-$(document).ready(function() {
-         
-  initialize();
-  
-});
-
-</script>
 <div id="form-overlay">
 	<!-- the external content is loaded inside this tag -->
 	<div class="contentWrap"></div>
@@ -107,27 +150,65 @@ $(document).ready(function() {
 
 
 <script type="text/javascript" charset="utf-8">
-	var $open_overlay;
-	$(function() {
-		
-		var overlay_conf = 
-		$('div.contentWrap form').live('submit', function () {
-			var action = $(this).attr('action');
-			$.post(action, $(this).serialize());
-			$open_overlay.close();
-			return false;
-		});
-				
-		$("a[rel]").overlay({
-			mask: 'black',
-			onBeforeLoad: function() {
-				// grab wrapper element inside content
-				var wrap = this.getOverlay().find(".contentWrap");
-				// load the page specified in the trigger
-				wrap.load(this.getTrigger().attr("href"));
-				$open_overlay = this;
-			}
 
-		});
+	var geocoder;
+	var map;
+	var marker;
+	var $open_overlay;
+	
+	function initialize(){
+	  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
+	  var options = {
+	    zoom: 8,
+	    center: latlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+
+	  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+
+	  //GEOCODER
+	  geocoder = new google.maps.Geocoder();
+
+		  var marker = new google.maps.Marker({
+	        position: latlng, 
+	        map: map, 
+	        title:"<%= @trip.destination %>"
+		  });
+
+	  <% @trip.events.each do |place| %>
+		  myLatLng = new google.maps.LatLng(<%= place.latitude.to_s + ", " + place.longitude.to_s %>);
+		  var marker = new google.maps.Marker({
+	        position: myLatLng, 
+	        map: map, 
+	        title:"<%= place.title %>"
+		  }); 
+	  <% end %>
+
+	}
+	
+	$(function() {
+		 initialize();
+		$('ul.tabs').tabs('#itenerary div.panes > div');
+		// $('div.contentWrap form').live('submit', function () {
+		// 	var action = $(this).attr('action');
+		// 	$.post(action, $(this).serialize());
+		// 	$open_overlay.close();
+		// 	return false;
+		// });
+		// 		
+		// $("a[rel]").overlay({
+		// 	mask: 'black',
+		// 	onBeforeLoad: function() {
+		// 		// grab wrapper element inside content
+		// 		var wrap = this.getOverlay().find(".contentWrap");
+		// 		// load the page specified in the trigger
+		// 		wrap.load(this.getTrigger().attr("href"));
+		// 		$open_overlay = this;
+		// 	}
+		// });
+		// 
+		// $('ul.tabs').tabs('div.panes > div');
+		//$('a.switch').click(function () { return false; });	
+		
 	});
 </script>
