@@ -1,4 +1,4 @@
-h1 a {
+<h1 a {
   font-size: 10px;
   margin-left: 10px;
   color: #ccc;
@@ -14,10 +14,17 @@ img {
 }
 
 #trip-info {
+  position: relative;
 	background-image: url(../images/background-fade.png);
 	background-repeat: repeat-x;
 }
 
+#trip-info #side_links {
+  display:block; 
+  position: absolute; 
+  top: 0; 
+  right: 30px;
+}
 
 .itinerary {
   width: 726px; 

@@ -13,46 +13,51 @@
 	<div id="map_canvas" style="width:690px; height:450px;"></div>
 </div>
 <div id="trip-info">
-
-  <div id="side_links">
-    <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
-  </div>
-
+    <div id="side_links">
+      <%= link_to 'Back to album', [@trip, @album] %>
+    </div>
 	<div id="itenerary">
+
 		<h3>Your Profile</h3>
 
 		<div class="nav">
-			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
+			<%= link_to(image_tag("left-arrow.png", {:class => 'back prev browse right'}), [@trip, @album, @image.previous]) if @image.previous %>
 			<ul class="tabs">
 				<li class="photo"></li>
 				<li class="journal"></li>
 			</ul>
-			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
+			<%= link_to(image_tag('right-arrow.png', {:class => 'forward next browse left'}), [@trip, @album, @image.next]) if @image.next %>
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
 			<!-- Albums -->
 			<div class="albums">
-        <%= render @trip.albums %>
 
-        <% if @trip.albums.empty? %>
-          <a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a>
-        <% end %>
+			  <div class="album_info">
+          <div class="title"><%= @album.title %></div> <!--<a href="#">Edit</a>-->
+          <div class="album_stats">
+            <%= @album.images.count %> Photos | 
+            <%= @album.created_at.strftime('%B %d, %Y') %>
+          </div>
+        </div>
 
-        <br clear="both" />
+        <div class="single_image">
+          <%= image_tag(@image.file.url) %>
+<!--
+          <div class="image_options">
+            <a href="#">add description</a> | 
+            <a href="#">delete image</a>
+          </div>
+          
+          <div class="image_description image editable"><%= @image.description || 'sup' %></div>
+        -->
+        </div>
+
       </div>
       <!-- End Albums -->
 
       <!-- Journals -->
-			<div class="daily-view">
-				<div class="day">
-					<div class="head">
-						October 19
-					</div>
-					<div class="body">
-
-					</div>
-				</div>
+			<div class="journals">
 			</div>
 			<!-- End Journals -->
 		</div>

@@ -1,0 +1,25 @@
+<div class="header">
+  <%= image_tag 'add-photos-header.png', :class => 'title' %>
+  <a href="#" onclick="$open_overlay.close(); return false;"><%= image_tag 'event-form-close.png' %></a>
+</div>
+
+<%= form_for([@trip, @album, @image], :html => {:multipart => true, :class => 'album_form'}) do |f| %>
+<table>
+  <tr>
+    <th>Title</th>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= f.text_area :description, :size => '20x4' %></td>
+  </tr>
+  <tr>
+    <th>File</th>
+    <td><%= f.file_field :file %></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><%= f.submit 'Add Image' %></td>
+  </tr>
+</table>
+<% end %>
