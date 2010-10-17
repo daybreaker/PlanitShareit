@@ -1,5 +1,8 @@
-<h1>New album</h1>
+<div class="header">
+  <%= image_tag 'create-album-header.png', :class => 'title' %>
+  <a href="#" onclick="$open_overlay.close(); return false;"><%= image_tag 'event-form-close.png' %></a>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', trip_albums_path(@trip) %>
+<%= form_for([@trip, @album], :html => {:class => 'album_form'}) do |f| %>
+<%= render 'form', :f => f %>
+<% end %>

@@ -5,15 +5,11 @@ class EventsController < ApplicationController
     @event = @trip.events.new
     authorize! :create, @event
 
-    respond_to do |format|
-      format.html { render :action => 'new', :layout => false }
-      format.xml  { render :xml => @event }
-    end
+    render :action => 'new', :layout => false
   end
 
   def create
     @event = @trip.events.new(params[:event])
-
   end
 
   def index

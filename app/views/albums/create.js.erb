@@ -1,0 +1,9 @@
+<% if @album.save %>
+  $open_overlay.close();
+  $("div.albums").html("<%= escape_javascript(render(@trip.albums))%>");
+  success('Album successfully created.');
+<% else %>
+  $('#<%= @album.errors.keys.map {|x| "album_#{x.to_s}" }.join(",#") %>').addClass('field_with_error');
+  $('.album_form .error_list').html("<%= raw @album.errors.full_messages.map {|x| "<li>#{x}</li>"}.join %>");
+  $('.album_form .errors').show();
+<% end %>

@@ -193,7 +193,7 @@ img {
 
 
 #itenerary .daily-view .item {
-	width: 720px;
+	width: 690px;
 /*	float: none;*/
 /*	min-height: 300px;*/
 }
@@ -324,6 +324,11 @@ img {
   text-decoration: underline;
 }
 
+#itenerary-menu {
+	position: absolute;
+	top: 630px;
+}
+
 #share_it {
   position: relative;
   left: 23px;
@@ -432,6 +437,46 @@ img {
 
 /****** MAP STYLES *******/
 
+/****** Common Form Elements ******/
+.overlay {
+	background-color: white;
+	color: black;
+	height: 300px;
+	width: 350px;
+	margin-top: 0px;
+	position: absolute;
+	display: none;
+}
+
+.overlay div.contentWrap {
+	overflow-y:auto;
+}
+
+.overlay .header {
+  background-color: #A2CECF;
+}
+
+.overlay .header .title {
+  margin-left: 20px;
+}
+
+.overlay .header a {
+  float: right;
+  margin-right: 20px;
+}
+
+.overlay .errors {
+  display: none;
+  color: #A72A3C;
+  margin: 5px;
+}
+
+div.overlay input.field_with_error {
+  border: 1px solid #A72A3C;
+}
+/****** /Common Form Elements ******/
+
+
 /****** Event form *******/
 
 #event-form-overlay {
@@ -441,26 +486,12 @@ img {
 	width: 650px;
 	margin-top: 0px;
 	position: absolute;
-	display: none;
 }
 
 #event-form-overlay div.contentWrap {
 	height:500px;
 	width: 650px;
 	overflow-y:auto;
-}
-
-#event-form-overlay .header {
-  background-color: #A2CECF;
-}
-
-#event-form-overlay .header .title {
-  margin-left: 20px;
-}
-
-#event-form-overlay .header a {
-  float: right;
-  margin-right: 20px;
 }
 
 .event_form {
@@ -496,25 +527,26 @@ img {
   border: 1px solid #ccc;
 }
 
-.event_form .errors {
-  display: none;
-  color: #A72A3C;
-  margin: 5px;
-}
-
-.event_form input.field_with_error {
-  border: 1px solid #A72A3C;
-}
-
 /****** /Event form ******/
 
+/****** Album form ******/
+#album-form-overlay div.contentWrap {
+	height:300px;
+	width: 350px;
+}
 
+#album-form-overlay form {
+  padding: 10px
+}
+/****** /Album form ******/
 
-
-
-
-
-
+/*
+.albums .album {
+  float: left;
+  width: 200px;
+  height: 240px;
+}
+*/
 
 
 
@@ -876,5 +908,5 @@ img {
     left: -4px; /*must have*/
     width: 200px; /*must have*/
     height: 200px; /*must have*/
-}/*
+}
 

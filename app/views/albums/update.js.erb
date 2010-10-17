@@ -1,0 +1,9 @@
+<% if @album.update_attributes(params[:album]) %>
+  $open_overlay.close();
+  $("div.overview").html("<%= escape_javascript(render(:partial => 'trips/day_overview'))%>");
+  success('Album successfully saved.');
+<% else %>
+  $('#<%= @album.errors.keys.map {|x| "album_#{x.to_s}" }.join(",#") %>').addClass('field_with_error');
+  $('.album_form .error_list').html("<%= raw @album.errors.full_messages.map {|x| "<li>#{x}</li>"}.join %>");
+  $('.album_form .errors').show();
+<% end %>

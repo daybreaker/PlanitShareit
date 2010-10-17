@@ -1,7 +1,7 @@
 <% if @event.update_attributes(params[:event]) %>
   $open_overlay.close();
   $("div.overview").html("<%= escape_javascript(render(:partial => 'trips/day_overview'))%>");
-  success('Event successfully saved.', 'notice');
+  success('Event successfully saved.');
 <% else %>
   $('#<%= @event.errors.keys.map {|x| "event_#{x.to_s}" }.join(",#") %>').addClass('field_with_error');
   $('.event_form .error_list').html("<%= raw @event.errors.full_messages.map {|x| "<li>#{x}</li>"}.join %>");
