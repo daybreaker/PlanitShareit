@@ -198,7 +198,7 @@ img {
 /*	min-height: 300px;*/
 }
 
-#next-day {
+#next-day, #prev-day {
 	display:none;
 }
 

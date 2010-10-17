@@ -16,7 +16,7 @@
 	<div id="itenerary-menu">
 		<ul>
 			<li><a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay">Add Event</a></li>
-			<li>Do Something</li>
+			<li><%= link_to "Driving Directions", trip_path(@trip) + '/driving' %></li>
 			<li>So Something Else</li>
 		</ul>
 	</div>
@@ -26,13 +26,13 @@
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
-			<%# image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
+			<%= image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
 			<ul class="tabs">
 				<li class="overview"></li>
 				<li class="daily"></li>
 			</ul>
 			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
-			<%# image_tag "right-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
+			<%= image_tag "right-arrow.png", {:id => 'next-day', :class => 'back browse right'} %>
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
