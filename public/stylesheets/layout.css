@@ -1,5 +1,4 @@
 body {
-  margin: 25px;
   font-family: arial;
   color: #333;
   background: #9DCDD9 url(/images/background.png) repeat-x;
@@ -16,23 +15,23 @@ img {
 }
 
 #header {
-  position: relative;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  padding: 0px;
-  width: 1010px;
-  color: #fff;
+  	color: white;
+	margin: 0px 120px;
+	padding: 0px;
+	position: relative;
+	width: 980px;
 }
 
 #header #logo {
   font-size: 180%;
+  position: relative;
+  left: 20px;
 }
 
 #header #user_nav {
-  position: absolute;
-  right: 10px;
-  bottom: 0px;
-  font-size: 90%;
+  float: right;
+  position: relative;
+  top: 75px;
 }
 
 #header #user_nav a {
@@ -41,7 +40,8 @@ img {
 
 #content {
   border: 1px solid #ccc;
-  padding: 20px;
+  padding-top: 20px;
+/*  padding: 20px;*/
 }
 
 #content h1 {
@@ -58,8 +58,8 @@ img {
 #content #sidebar {
   float: right;
   position: relative;
-  width: 200px;
-  padding: 15px;
+/*  width: 200px;*/
+/*  padding: 15px;*/
 }
 
 #map_canvas{
@@ -102,7 +102,7 @@ img {
 /** EVENTS **/
 
 .full-event {
-	margin: 10px;
+	margin: 0 10px;
 	font-size: 9pt;
 }
 
