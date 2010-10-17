@@ -41,7 +41,8 @@ img {
 
 #content {
   border: 1px solid #ccc;
-  padding: 20px;
+  padding-top: 20px;
+/*  padding: 20px;*/
 }
 
 #content h1 {
@@ -58,8 +59,8 @@ img {
 #content #sidebar {
   float: right;
   position: relative;
-  width: 200px;
-  padding: 15px;
+/*  width: 200px;*/
+/*  padding: 15px;*/
 }
 
 #map_canvas{
@@ -102,7 +103,7 @@ img {
 /** EVENTS **/
 
 .full-event {
-	margin: 10px;
+	margin: 0 10px;
 	font-size: 9pt;
 }
 

@@ -1,6 +1,10 @@
 $(function() {
   $(".scrollable").scrollable();
-
+  $('.daily-view').scrollable({
+	items: '.days',
+	prev: "#prev-day",
+	next: "#next-day",
+	});
   $('#new_trip').easyAccordion();
 
   $('#new_trip a.next').click(function() {
