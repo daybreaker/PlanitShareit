@@ -14,6 +14,8 @@ class Trip < ActiveRecord::Base
   before_save :trip_geocode
   before_validation :time_add
   
+  attr_accessor :no_accomodation
+  
   def starting_location
 	loc = {}
 	loc['address'] = self.accomodation_address.blank? ? 

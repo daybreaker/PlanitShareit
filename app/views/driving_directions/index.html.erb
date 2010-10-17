@@ -1,13 +1,20 @@
-<h2><%= @trip.start_date.to_date + (@day.to_i-1).days %></h2>
+<div style=" margin-left:20px">
+
+<h2>Driving directions for <%= @trip.start_date.to_date + (@day.to_i-1).days %></h2>
+<p width="60%"><%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>
+<%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>
+</p>
 <% if !@mapped_events.blank? %>
-<div id="map_canvas" style="width:66%; height:600px; float:left;"></div>
-<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+	<div id="map_canvas" style="width:60%; height:500px; float:left;"></div>
+
+<div id="directionsPanel" style="float:right;width:30%;height 100%; padding-right:20px"></div>
 <% end %>
 
 <div id="event_listing" style="clear:left; padding-top: 15px">
 <% if !@mapped_events.blank? %> 
+<p style="width:60%">Re-organize your events by dragging them to change the order in which they appear in the driving directions. Your initial location cannot be changed, hiowever.</p>
 	<ul class="start_point">
-		<li>Hotel</li>
+		<li><%= @starting_location['name'] %></li>
 	</ul>
 
 	<ul id="sortable">
@@ -16,8 +23,7 @@
 	<% end %>
 	</ul>
 <% end %>
-<%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>
-<%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>
+
 <br />
 <% if !@unmapped_events.blank? %>
 Unmappable Events:
@@ -28,10 +34,10 @@ Unmappable Events:
 </ul>
 <% end %>
 </div>
+<br /><br />
+</div>
 
-
-
-
+<div style="clear:both"></div>
 <script type="text/javascript">
 
   var directionsDisplay;

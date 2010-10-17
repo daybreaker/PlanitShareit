@@ -17,6 +17,7 @@ strong {
   width: 970px;
   margin: 0 auto;
   background-color: #fff;
+  position: relative;
 }
 
 #header {
