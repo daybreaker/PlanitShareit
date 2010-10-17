@@ -13,12 +13,9 @@
 	<div id="map_canvas" style="width:690px; height:450px;"></div>
 </div>
 <div id="trip-info">
-	<div id="itenerary-menu">
-		<ul>
-			<li><a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay">Add Event</a></li>
-			<li><%= link_to "Driving Directions", trip_path(@trip) + '/driving' %></li>
-			<li>So Something Else</li>
-		</ul>
+	<div id="side_links">
+	  <div class="button"><a href="<%= new_trip_event_path(@trip) %>" class="add_event" rel="#event-form-overlay">Add Event</a></div>
+	  <div class="button"><%= link_to "Driving Directions", trip_path(@trip) + '/driving' %></div>
 	</div>
 	<div id="itenerary">
 		<h3><%= image_tag 'your-itinerary.png' %></h3>
