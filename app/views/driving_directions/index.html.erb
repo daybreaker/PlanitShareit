@@ -1,0 +1,131 @@
+<div id="map_canvas" style="width:66%; height:600px; float:left;"></div>
+<div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
+
+<div id="event_listing" style="clear:left; padding-top: 15px">
+<ul class="start_point">
+	<li>Hotel</li>
+</ul>
+
+<ul id="sortable">
+<% @trip.events_on_day(@day.to_i,'mapped').each do |e| %>
+	<li id="e_<%= e.id %>" class="handle"><%= !e.title.blank? ? e.title : e.location %><span class="lat_long" style="display:none"><%= e.latitude %>, <%= e.longitude %></span></li>
+<% end %>
+</ul>
+<%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>
+<%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var geocoder;
+  
+  
+  function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer();
+
+    var latlng = new google.maps.LatLng(<%= @trip.latitude.to_s + ", " + @trip.longitude.to_s %>);
+    var myOptions = {
+      zoom: 11,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var mainMarker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"<%= @trip.title %>",
+		center: latlng
+	  }); 
+	  
+	directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+	
+	geocoder = new google.maps.Geocoder();
+	
+	
+	
+	
+/*****************	
+	<% @trip.events_on_day(@day.to_i).each do |e| %>
+	  myLatLng = new google.maps.LatLng(<%= e.latitude.to_s + ", " + e.longitude.to_s %>);
+	  var marker = new google.maps.Marker({
+        position: myLatLng, 
+        map: map, 
+        title:"<%= e.title %>"
+	  }); 
+	<% end %>
+********************/
+  }
+  
+  
+  function calcRoute() {
+
+    var start = '<%= @trip.latitude.to_s + ", " + @trip.longitude.to_s %>';
+    var waypts = [];
+	
+    $("#sortable li").each(function(){
+			waypts.push({
+				location:$('.lat_long', this).html(),
+				stopover:true
+		})
+	});
+        
+      
+    
+
+    var request = {
+        origin: start, 
+        destination: start,
+        waypoints: waypts,
+        optimizeWaypoints: false,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+	
+	
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+	}});
+        
+		
+/*		var route = response.routes[0];
+        var summaryPanel = document.getElementById("directions_panel");
+        summaryPanel.innerHTML = "";
+        // For each route, display summary information.
+        for (var i = 0; i < route.legs.length; i++) {
+          var routeSegment = i + 1;
+          summaryPanel.innerHTML += "<b>Route Segment: " + routeSegment + "</b><br />";
+          summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+          summaryPanel.innerHTML += route.legs[i].end_address + "<br />";
+          summaryPanel.innerHTML += route.legs[i].distance.text + "<br /><br />";
+*/
+
+  }
+  
+  
+
+
+  
+  $(function(){
+	initialize();
+	calcRoute();
+	$(function() {
+		$("#sortable").sortable({ 
+			update : function () { 
+				var order = $('#sortable').sortable('serialize'); 
+				calcRoute();
+			} 
+		});
+
+	});
+
+	
+  });
+</script>

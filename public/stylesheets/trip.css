@@ -252,14 +252,14 @@ h1 a {
 }
 
 /********** SORTABLE STYLES ************/
-#sortable { 
+#sortable , .start_point{ 
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0; 
 	width: 60%; 
 }
 
-#sortable li { 
+#sortable li , .start_point li{ 
 	margin: 0 3px 3px 3px; 
 	padding: 0.4em; 
 	padding-left: 1.5em; 
