@@ -8,6 +8,10 @@ img {
   border: none;
 }
 
+strong {
+	color: #3C6079;
+}
+
 #content, #footer {
   width: 970px;
   margin: 0 auto;
@@ -20,12 +24,13 @@ img {
 	padding: 0px;
 	position: relative;
 	width: 980px;
+	margin: 0 auto;
 }
 
 #header #logo {
   font-size: 180%;
   position: relative;
-  left: 20px;
+  left: 5px;
 }
 
 #header #user_nav {

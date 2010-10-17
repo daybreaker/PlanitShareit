@@ -232,7 +232,7 @@ img {
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
 */
-.scrollable, .daily-view {
+.scrollable, .daily-view, .unscheduled-events {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
@@ -241,6 +241,23 @@ img {
 /*	border: 3px solid #F6F692;*/
 	border-top: none;
 }
+
+.unscheduled-events { 
+	width: 666px;
+	border: 2px solid #F6F692;
+	position: relative;
+	top: -23px;
+	padding: 10px;
+}
+
+.unscheduled-events div.top { 
+	margin-bottom: 13px;
+}
+
+.unscheduled-events .col-1 { 
+float: left;
+}
+
 
 /*
 	root element for scrollable items. Must be absolutely positioned

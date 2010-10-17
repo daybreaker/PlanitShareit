@@ -36,19 +36,15 @@
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
-			<!-- my content -->
 			<%= render :partial => 'day_overview' %>
-			<!-- end my conten -->
-			<div class="daily-view">
 			<%= render :partial => 'day_listing' %>
-			</div>
+		</div>
+		<div class="unscheduled-events">
+		<%= render :partial => 'unscheduled_events' %>
 		</div>
 	</div>
 	<p id="prev-day">BACK</p><p id="next-day">FORWARD</p>
-	<div id="open_events">
-	  <div>Fly by the seat of your pants</div>
-	  <%= render :partial => 'events/event_unscheduled', :collection => @trip.events.unscheduled %>
-	</div>
+	
 </div>
 
 
