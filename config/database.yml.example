@@ -16,11 +16,11 @@ test:
   timeout: 5000
 
 production:
-adapter: mysql
-encoding: utf8
-reconnect: false
-database: rr10-team-303_production
-pool: 5
-username: root
-password: RailsRumble2010
-socket: /var/run/mysqld/mysqld.sock
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: rr10-team-303_production
+  pool: 5
+  username: root
+  password: RailsRumble2010
+  socket: /var/run/mysqld/mysqld.sock
