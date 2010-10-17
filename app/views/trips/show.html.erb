@@ -111,6 +111,9 @@ $(document).ready(function() {
 	$(function() {
 
 		$('div.contentWrap form').live('submit', function () {
+		  $(this).find('.field_with_error').removeClass('field_with_error');
+		  $('#error-list').hide();
+
 			var action = $(this).attr('action');
 			$.post(action, $(this).serialize());
 			return false;
