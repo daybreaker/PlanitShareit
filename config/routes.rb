@@ -1,6 +1,7 @@
 Planitshareit::Application.routes.draw do
   resources :trips do
     resources :events
+    resources :albums
   end
   
   match 'trips/:trip_id/driving' => "driving_directions#index", :as => "driving"

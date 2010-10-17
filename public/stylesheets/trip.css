@@ -87,6 +87,18 @@ img {
 	cursor: pointer;
 }
 
+#itenerary .nav .photo {
+	background-image: url(../images/photo.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#itenerary .nav .journal {
+	background-image: url(../images/journal.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
 #itenerary ul {
 	list-style-type: none;
 	margin: auto;
@@ -145,7 +157,13 @@ img {
 }
 #itenerary .nav li.overview.current {
 	background-image: url(../images/overview-active.png);
+}
 
+#itenerary .nav li.photo.current {
+	background-image: url(../images/photo-active.png);
+}
+#itenerary .nav li.journal.current {
+	background-image: url(../images/journal-active.png);
 }
 
 

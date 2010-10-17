@@ -1,0 +1,8 @@
+<p>
+  <b>Name:</b>
+  <%= @album.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_trip_album_path(@trip, @album) %> |
+<%= link_to 'Back', trip_albums_path(@trip) %>
