@@ -13,6 +13,11 @@ $(function() {
     return false;
   });
 
+  $('#share_it').click(function() {
+    $('#content').flip({
+      direction: 'rl'
+    });
+  });
 });
 
 function success(msg,type) {
