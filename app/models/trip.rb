@@ -14,7 +14,7 @@ class Trip < ActiveRecord::Base
   def starting_location
 	loc = {}
 	loc['address'] = self.accomodation_address.blank? ? 
-				self.destination_city + ', ' + self.destination_state + ' ' + (self.destination_zip unless self.destination_zip.blank?) :
+				self.destination_city + ', ' + self.destination_state :
 				self.accomodation_address + ' ' + self.accomodation_city + ', ' + self.accomodation_state + ' ' + self.accomodation_zip,
 	loc['latlng'] = !self.accomodation_latitude.blank? ?
 				self.accomodation_latitude.to_s + ", " + self.accomodation_longitude.to_s :
