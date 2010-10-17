@@ -1,18 +1,16 @@
-<div id="day_overview" class="scrollable">
-  <div class="items">
-
-    <% @trip.days.each_slice(4) do |day_array| %>
-      <div class="item">
-        <% day_array.each do |day| %>
-
-          <div class="date<%= ' first' if day == day_array[0] %>">
-            <div class="title"><%= day.strftime("%B %d") %></div>
-            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
-          </div>
-
-        <% end %>
-      </div>
-    <% end %>
-
-  </div>
+<div class="overview scrollable">
+	<div class="items">
+		<% @trip.days.each_slice(4) do |day_array| %>
+		<ul class="days item">
+			<% day_array.each do |day| %>
+			<li class="day<%= ' first' if day == day_array[0] %><%= ' last' if day == day_array[3] %>">
+				<div class="head"><%= day.strftime("%B %d") %></div>
+				<div class="body">
+					<%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+		<% end %>
+	</div>
 </div>
