@@ -8,6 +8,7 @@ Planitshareit::Application.routes.draw do
   
   match 'trips/:trip_id/driving' => "driving_directions#index", :as => "driving"
   match 'trips/:trip_id/day/:day/driving' => "driving_directions#index", :as => "driving"
+  match 'public/trips/:trip_id' => "albums#index"
   
   root :to => "pages#index"
   
