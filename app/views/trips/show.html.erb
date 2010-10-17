@@ -28,24 +28,7 @@
   <a class="next browse right"><%= image_tag 'right-arrow.png' %></a>
 </div>
 
-<div class="scrollable">
-  <div class="items">
-
-    <% @trip.days.each_slice(4) do |day_array| %>
-      <div class="item">
-        <% day_array.each do |day| %>
-
-          <div class="date<%= ' first' if day == day_array[0] %>">
-            <div class="title"><%= day.strftime("%B %d") %></div>
-            <%= render :partial => 'events/event_tiny', :collection => @trip.events.for_date(day) %>
-          </div>
-
-        <% end %>
-      </div>
-    <% end %>
-
-  </div>
-</div>
+<%= render :partial => 'day_overview' %>
 
 <a class="next browse right"></a>
 
@@ -130,21 +113,27 @@ $(document).ready(function() {
 		$('div.contentWrap form').live('submit', function () {
 			var action = $(this).attr('action');
 			$.post(action, $(this).serialize());
-			$open_overlay.close();
 			return false;
 		});
 
-		$("a[rel]").overlay({
-			mask: 'black',
-			closeOnClick: false,
-			onBeforeLoad: function() {
-				// grab wrapper element inside content
-				var wrap = this.getOverlay().find(".contentWrap");
-				// load the page specified in the trigger
-				wrap.load(this.getTrigger().attr("href"));
-				$open_overlay = this;
-			}
+		$("a[rel]").live('click', function(e) {
+		  e.preventDefault();
 
-		});
+      $(this).overlay({
+  			mask: 'black',
+  			closeOnClick: false,
+  			load: true,
+  			onBeforeLoad: function() {
+  				// grab wrapper element inside content
+  				var wrap = this.getOverlay().find(".contentWrap");
+  				// load the page specified in the trigger
+  				wrap.load(this.getTrigger().attr("href"));
+  				$open_overlay = this;
+  			},
+  			onClose: function() {
+  			  reset_form('.event_form');
+  			}
+  		});
+	  });
 	});
 </script>

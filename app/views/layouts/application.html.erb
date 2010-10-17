@@ -24,9 +24,11 @@
   </div>
 
   <div id="content">
-    <% flash.each_with_index do |type,message| %>
-      <div class="<%= type %>"><%= message %></p>
-    <% end %>
+    <div id="flash"<%= raw ' style="display:none"' if flash.empty? %>>
+      <% flash.each do |f| %>
+        <div class="<%= f[0] %>"><%= f[1] %></div>
+      <% end %>
+    </div>
 
     <%= yield %>
   </div>

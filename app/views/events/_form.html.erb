@@ -2,9 +2,8 @@
 <div id="event_map_canvas" style="width:300px; height:300px; float:right"></div>
 -->
 
-<%= form_for([@trip, @event], :html => {:class => 'event_form'}) do |f| %>
-	<% if @event.errors.any? %>
-	<div id="error-list">
+
+	<div id="error-list" style="display:none">
 		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 		<ul>
 		<% @event.errors.full_messages.each do |msg| %>
@@ -12,7 +11,6 @@
 		<% end %>	
 		</ul>
 	</div>
-	<% end %>
 	
 	<%= f.hidden_field :latitude %>
 	<%= f.hidden_field :longitude %>
@@ -51,12 +49,13 @@
     <tr>
       <th></th>
       <td>
-        <%= image_submit_tag 'event-add-another.png' %>
-        <%= image_submit_tag 'event-finish.png' %>
+        <% buttons.each do |button| %>
+        <%= button %>
+        <% end %>
       </td>
     </tr>
 	</table>
-<% end %>		
+		
 
 <script type="text/javascript">
 

@@ -13,15 +13,10 @@ class EventsController < ApplicationController
 
   def create
     @event = @trip.events.new(params[:event])
-
-    if @event.save
-    else
-    end
   end
 
   def index
-    @trip = Trip.find(params[:trip_id])
-    @events = @trip.events.open
+    @events = @trip.events.unscheduled
     # authorize! :view, @events
     render :layout => false
   end
@@ -34,17 +29,6 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { render :nothing => true }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors,
-                      :status => :unprocessable_entity }
-      end
-    end
   end  
 
   private
