@@ -29,7 +29,7 @@
   </div>
 
 	<div id="itenerary">
-		<h3><%= @viewer_is_owner ? image_tag 'your-profile.png' :  @trip.user.username.capitalize + "'s Photos"%></h3>
+		<h3><%= @viewer_is_owner ? image_tag('your-profile.png') :  @trip.user.username.capitalize + "'s Photos"%></h3>
 
 		<div class="nav">
 			<!--<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>-->
