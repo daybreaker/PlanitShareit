@@ -2,6 +2,7 @@ body {
   font-family: arial;
   color: #333;
   background: #9DCDD9 url(/images/background.png) repeat-x;
+  margin: 0;
 }
 
 img {
@@ -15,23 +16,17 @@ img {
 }
 
 #header {
-  	color: white;
-	margin: 0px 120px;
+  color: white;
+	margin: 30px auto;
 	padding: 0px;
 	position: relative;
-	width: 980px;
-}
-
-#header #logo {
-  font-size: 180%;
-  position: relative;
-  left: 20px;
+	width: 970px;
 }
 
 #header #user_nav {
-  float: right;
-  position: relative;
-  top: 75px;
+  position: absolute;
+  top: 40px;
+  right: 0px;
 }
 
 #header #user_nav a {
