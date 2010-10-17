@@ -22,24 +22,24 @@ strong {
 #header {
   color: white;
 	margin: 30px auto;
-	padding-top: 20px;
+	padding: 0px;
 	position: relative;
-	width: 980px;
-	height: 75px;
+	width: 960px;
+	height: 60px;
 	margin: 0 auto;
+	padding-top: 20px;
 }
 
 #header #logo {
   font-size: 180%;
   position: relative;
   left: 5px;
-	width: 970px;
 }
 
 #header #user_nav {
   position: absolute;
-  top: 70px;
-  right: 10px;
+  top: 50px;
+  right: 0px;
 }
 
 #header #user_nav a {
