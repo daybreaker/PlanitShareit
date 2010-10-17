@@ -37,3 +37,14 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 end
+
+namespace :deploy do
+  desc "Symlink configuration files"
+  task :symlink_configs, :roles => :app do
+    %w{database}.each do |config_file|
+      run "ln -nfs #{deploy_to}/shared/config/#{config_file}.yml #{release_path}/config/#{config_file}.yml"
+    end
+  end
+end
+
+after 'deploy:update_code', 'deploy:symlink_configs'
