@@ -1,3 +1,16 @@
-<% @trips.each do |trip| %>
-  <%= link_to trip.destination, trip %><br />
-<% end %>
+<div id="trip-list">
+	<h1>Your Trips!</h1>
+	<% @trips.each do |trip| %>
+	  <div class="trip">
+		<div class="public-url">
+			<span>Share this URL with your friends:</span>
+			<div>
+				http://<%= request.host %>/public/trip/<%= trip.id %>
+			</div>
+		</div>
+	  	<h2><%= link_to trip.title, trip %></h2>
+		<h3><%= trip.start_date.strftime('%b %d, %Y') %> - <%= trip.end_date.strftime('%b %d, %Y') %> | <%= trip.destination %></h3>
+	  </div>
+	<% end %>
+</div>
+
