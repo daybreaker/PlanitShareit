@@ -16,7 +16,7 @@
 
 <div id="trip-head">
 	<% if @viewer_is_owner %>
-	<h1><%= @trip.title %><a href="#">Edit</a></h1>
+	<h1><%= @trip.title %></h1>
 	<% else %>
 	<h1><%= @trip.user.username.capitalize %>'s Trip To</h1>
 	<% end %>
