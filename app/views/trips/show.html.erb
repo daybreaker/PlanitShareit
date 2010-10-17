@@ -26,13 +26,13 @@
 
 		<div class="nav">
 			<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %>
-			<%= image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right'} %>
+			<%= image_tag "left-arrow.png", {:id => 'prev-day', :class => 'back browse right swapped'} %>
 			<ul class="tabs">
 				<li class="overview"></li>
 				<li class="daily"></li>
 			</ul>
 			<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %>
-			<%= image_tag "right-arrow.png", {:id => 'next-day', :class => 'back browse right'} %>
+			<%= image_tag "right-arrow.png", {:id => 'next-day', :class => 'forward browse left swapped'} %>
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
@@ -122,7 +122,22 @@ $(document).ready(function() {
 
 <script type="text/javascript" charset="utf-8">
 	$(function() {
-		$('ul.tabs').tabs('#itenerary div.tab-panes > div');
+		$('ul.tabs').tabs('#itenerary div.tab-panes > div', {
+			onClick: function  () {
+				if (this.getIndex() == 0) {
+					$('.browse.right').addClass('swapped');
+					$('.browse.left').addClass('swapped');
+					$('#prev-day').removeClass('swapped');
+					$('#next-day').removeClass('swapped');
+				} else {
+					$('.browse.right').removeClass('swapped');
+					$('.browse.left').removeClass('swapped');
+					$('#prev-day').addClass('swapped');
+					$('#next-day').addClass('swapped');
+				}
+				
+			}
+		});
 
 		$('div.contentWrap form').live('submit', function () {
 			var action = $(this).attr('action');

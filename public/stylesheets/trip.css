@@ -37,9 +37,11 @@ img {
   cursor: pointer;
 }
 
-.nav img.browse.disabled {
+.nav img.browse.disabled, .browse.disabled, .browse.swapped {
   display: none;
 }
+
+
 
 /** ITENERARY **/
 
@@ -198,9 +200,6 @@ img {
 /*	min-height: 300px;*/
 }
 
-#next-day, #prev-day {
-	display:none;
-}
 
 #itenerary .daily-view .item .body {
 	margin-top: 10px;
