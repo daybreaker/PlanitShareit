@@ -6,11 +6,11 @@
 </div>
 
 <div id="trip-head">
-	<h1><%= @trip.title %><a href="#">Edit</a></h1>
+	<h1><%= @trip.title %></h1>
 	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
 </div>
 <div id="trip-map">
-	<div id="map_canvas" style="width:725px; height:450px;"></div>
+	<div id="map_canvas" style="width:690px; height:450px;"></div>
 </div>
 <div id="trip-info">
 
