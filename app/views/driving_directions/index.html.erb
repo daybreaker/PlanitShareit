@@ -1,18 +1,20 @@
+<div id="printDirections" style="float:right;padding-right:30px"><a href="javascript://" onclick="window.print()" style="border:0;outline:0"><%= image_tag('print-directions.png', :style=>"border:0;") %></a></div>
+
 <div style=" margin-left:20px">
 
-<h2>Driving directions for <%= @trip.start_date.to_date + (@day.to_i-1).days %></h2>
-<p width="60%"><%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>
-<%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>
+<h1>Driving Directions</h1>
+<p style="width:670px;">
+<%= link_to "Prev Day", driving_path(@trip, @day.to_i-1) unless @day == '1' %>&nbsp|&nbsp;
+<%= @trip.start_date.to_date + (@day.to_i-1).days %>&nbsp;|&nbsp;
+<%= link_to "Next Day", driving_path(@trip, @day.to_i+1) %>&nbsp;|&nbsp;<%= link_to "Return to Itinerary" , trip_path(@trip)%>
 </p>
+
 <% if !@mapped_events.blank? %>
-	<div id="map_canvas" style="width:60%; height:500px; float:left;"></div>
+<div id="event_listing" style="float:right; padding-right:25px">
 
-<div id="directionsPanel" style="float:right;width:30%;height 100%; padding-right:20px"></div>
-<% end %>
-
-<div id="event_listing" style="clear:left; padding-top: 15px">
+<%= image_tag('events.png') %>
 <% if !@mapped_events.blank? %> 
-<p style="width:60%">Re-organize your events by dragging them to change the order in which they appear in the driving directions. Your initial location cannot be changed, hiowever.</p>
+<p style="width:250px">Drag and Drop events to change their order in the directions.</p>
 	<ul class="start_point">
 		<li><%= @starting_location['name'] %></li>
 	</ul>
@@ -34,10 +36,19 @@ Unmappable Events:
 </ul>
 <% end %>
 </div>
+
+
+
+
+
+	<div id="map_canvas" style="width:640px; height:380px; float:left;"></div>
+	<div id="directionsPanel" style="float:left;width:640px;"></div>
+<% end %>
+
 <br /><br />
 </div>
 
-<div style="clear:both"></div>
+<div style="clear:both"></div><br /><br />
 <script type="text/javascript">
 
   var directionsDisplay;
