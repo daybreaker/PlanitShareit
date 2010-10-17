@@ -2,34 +2,41 @@ body {
   margin: 25px;
   font-family: arial;
   color: #333;
-  background-image: url(../images/background.png);
-  background-repeat: repeat-x;
-  background-color: #A1CDCF;
+  background: #9DCDD9 url(/images/background.png) repeat-x;
 }
 
 img {
   border: none;
 }
 
-#header, #content, #footer {
+#content, #footer {
   width: 970px;
   margin: 0 auto;
-  background-color: white;
+  background-color: #fff;
 }
 
 #header {
+  position: relative;
+  margin: 0 auto;
   margin-bottom: 10px;
   padding: 0px;
-  width: 995px;
+  width: 1010px;
+  color: #fff;
 }
 
 #header #logo {
-  font-size: 130%;
+  font-size: 180%;
 }
 
 #header #user_nav {
-  float: right;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
   font-size: 90%;
+}
+
+#header #user_nav a {
+  color: #fff;
 }
 
 #content {

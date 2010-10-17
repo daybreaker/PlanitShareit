@@ -17,10 +17,16 @@ $(function() {
     return false;
   });
 
-  $('#share_it').click(function() {
+  $('#share_it').live('click', function() {
     $('#content').flip({
-      direction: 'rl'
+      onBefore: function() {
+        $('#content').load($('#share_it a').attr('href') + ' #content');
+      },
+      direction: 'rl',
+      color: '#fff'
     });
+
+    return false;
   });
 });
 

@@ -9,8 +9,9 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-	@starting_location = @trip.starting_location
-	authorize! :view, @trip
+
+  	@starting_location = @trip.starting_location
+  	authorize! :view, @trip
   end
 
   def new
