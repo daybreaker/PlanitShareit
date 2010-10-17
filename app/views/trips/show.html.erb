@@ -65,7 +65,7 @@ var map;
 var marker;
    
 function initialize(){
-  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
+  var latlng = new google.maps.LatLng(<%= @starting_location['latlng'] %>);
   var options = {
     scrollwheel: false,
     zoom: 11,
@@ -77,15 +77,18 @@ function initialize(){
        
   //GEOCODER
   geocoder = new google.maps.Geocoder();
-  
+    var bounds = new google.maps.LatLngBounds();
+
 	  var mainMarker = new google.maps.Marker({
         position: latlng, 
         map: map, 
-        title:"<%= @trip.destination %>"
+        title:"<%= @starting_location['name'] %>"
 	  });
-  var bounds = new google.maps.LatLngBounds();
-	  
-  <% @trip.events.mapped.each do |place| %>
+	<% unless @trip.events.mapped.blank? %>
+	   bounds.extend(latlng);
+       map.fitBounds(bounds);
+	<% end %> 
+    <% @trip.events.mapped.each do |place| %>
 	  myLatLng = new google.maps.LatLng(<%= place.latitude %>, <%= place.longitude %>);
 	  var marker = new google.maps.Marker({
         position: myLatLng, 
@@ -94,7 +97,7 @@ function initialize(){
 	  }); 
       bounds.extend(myLatLng);
       map.fitBounds(bounds);
-  <% end %>
+    <% end %>
   
   $("#map_canvas").append('<span class="hide_map"><a href="javascript://" id="hide_map_link">hide map</a></span>');
 }

@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def create
     @event = @trip.events.new(params[:event])
+
   end
 
   def index
