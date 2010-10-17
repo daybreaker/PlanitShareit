@@ -22,7 +22,7 @@ img {
 #trip-info #side_links {
   display:block; 
   position: absolute; 
-  top: 0; 
+  top: 64px; 
   right: 30px;
 }
 

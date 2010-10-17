@@ -94,3 +94,38 @@
   border: 1px solid #ccc;
   text-align: center;
 }
+
+.album_info .back_button {
+  float: right;
+  margin-right: 20px;
+}
+
+.album_info .back_button a {
+  text-decoration:none;
+  color: #305F79;
+}
+
+.album_info .back_button a:hover {
+  text-decoration: underline;
+}
+
+#side_links .button {
+  background: url(/images/tool-button.png) no-repeat;
+  font-size: 110%;
+  width: 190px;
+  height: 39px;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+
+#side_links .button a {
+  font-weight: bold;
+  display: block;
+  text-decoration: none;
+  height: 39px;
+  color: #2B6179;
+}
+
+#side_links .button:hover {
+  background: url(/images/tool-button-hover.png) no-repeat;
+}
