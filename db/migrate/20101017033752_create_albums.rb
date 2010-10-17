@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration
     create_table :albums do |t|
       t.references :trip
 
-      t.string :name
+      t.string :title
       t.string :permission, :default => 'private'
 
       t.timestamps
