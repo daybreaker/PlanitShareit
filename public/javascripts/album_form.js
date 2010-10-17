@@ -1,14 +1,15 @@
 $(function() {
 	$('ul.tabs').tabs('#itenerary div.tab-panes > div');
-
+/*
 	$('div.contentWrap form').live('submit', function () {
 		var action = $(this).attr('action');
 		$.post(action, $(this).serialize());
 		return false;
 	});
-
+*/
 	$("a[rel]").live('click', function(e) {
 		e.preventDefault();
+
 		$(this).overlay({
 			mask: 'black',
 			closeOnClick: false,

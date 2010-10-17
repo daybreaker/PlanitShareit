@@ -1,8 +1,149 @@
-<p>
-  <b>Name:</b>
-  <%= @album.name %>
-</p>
+<%= javascript_include_tag 'album_form.js' %>
+<div id="sidebar">
+  <div id="share_it">
+    <%= link_to image_tag("plan-it.png"), trip_url(@trip) %>
+  </div>
+</div>
 
+<div id="trip-head">
+	<h1><%= @trip.title %></h1>
+	<h2><%= @trip.destination_city.blank? ? @trip.destination : @trip.destination_city + ', ' + @trip.destination_state %></h2>
+</div>
+<div id="trip-map">
+	<div id="map_canvas" style="width:690px; height:450px;"></div>
+</div>
+<div id="trip-info">
+  <div id="side_links">
+    
+    <div class="button"><a href="<%= new_trip_album_image_path(@trip, @album) %>" rel="#album-form-overlay">Add images</a></div>
+  </div>
 
-<%= link_to 'Edit', edit_trip_album_path(@trip, @album) %> |
-<%= link_to 'Back', trip_albums_path(@trip) %>
+	<div id="itenerary">
+		<h3><%= image_tag 'your-profile.png' %></h3>
+
+		<div class="nav">
+			<!--<%= image_tag "left-arrow.png", {:class => 'back prev browse right'} %> -->
+			<ul class="tabs">
+				<li class="photo"></li>
+				<!-- <li class="journal"></li> -->
+			</ul>
+			<!--<%= image_tag 'right-arrow.png', {:class => 'forward next browse left'} %> -->
+		</div>
+		<div style="clear: left;"></div>
+		<div class="tab-panes">
+			<!-- Albums -->
+			<div class="albums">
+
+			  <div class="album_info">
+			    <div class="back_button"><%= link_to 'Back to galleries', trip_albums_path(@trip) %></div>
+          <%= @album.title %><!--<a href="#">Edit</a>-->
+          <div class="album_stats">
+            <%= @album.images.count %> Photos | 
+            <%= @album.created_at.strftime('%B %d, %Y') %>
+          </div>
+        </div>
+
+        <!--
+        <div class="album_permissions">
+          
+        </div>
+        -->
+
+        <% @album.images.each do |image| %>
+          <div class="album_image">
+            <%= link_to image_tag(image.file.thumb.url), [@trip, @album, image] %>
+
+            <!--
+            <div class="image_options">
+              <a href="#">add description</a> | 
+              <a href="#">delete image</a>
+            </div>
+            <%= image.description %>
+            -->
+          </div>
+        <% end %>
+
+        <br clear="both" />
+        
+      </div>
+      <!-- End Albums -->
+
+      <!-- Journals -->
+			<!--
+			<div class="journals">
+			</div>
+			-->
+			<!-- End Journals -->
+		</div>
+	</div>
+</div>
+
+<div id="album-form-overlay" class="overlay" style="display:none">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap">
+	  
+  </div>
+</div>
+
+<script type="text/javascript">
+
+var geocoder;
+var map;
+var marker;
+   
+function initialize(){
+  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
+  var options = {
+    scrollwheel: false,
+    zoom: 11,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+       
+  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+       
+  //GEOCODER
+  geocoder = new google.maps.Geocoder();
+  
+	  var mainMarker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"<%= @trip.destination %>"
+	  });
+  var bounds = new google.maps.LatLngBounds();
+	  
+  <% @trip.events.mapped.each do |place| %>
+	  myLatLng = new google.maps.LatLng(<%= place.latitude %>, <%= place.longitude %>);
+	  var marker = new google.maps.Marker({
+        position: myLatLng, 
+        map: map, 
+        title:"<%= place.title %>"
+	  }); 
+      bounds.extend(myLatLng);
+      map.fitBounds(bounds);
+  <% end %>
+  
+  $("#map_canvas").append('<span class="hide_map"><a href="javascript://" id="hide_map_link">hide map</a></span>');
+}
+
+$(document).ready(function() {
+         
+  initialize();
+  
+  $("#hide_map_link").toggle(function(){
+	$("#map_canvas").elapsor({
+      color:'#fff',
+      opacity:70
+	});
+	$("#map_canvas").animate({height:"50px"},1000);
+	$("#map_canvas span a").html("show map");
+  }, function(){
+	$("#map_canvas").hideElapsor();
+	$("#map_canvas").animate({height:"450px"},1000);
+	$("#map_canvas span a").html("hide map");
+  });
+  
+  $("#hide_map_link").click();
+});
+
+</script>

@@ -1,4 +1,4 @@
-h1 a {
+<h1 a {
   font-size: 10px;
   margin-left: 10px;
   color: #ccc;
@@ -14,10 +14,17 @@ img {
 }
 
 #trip-info {
+  position: relative;
 	background-image: url(../images/background-fade.png);
 	background-repeat: repeat-x;
 }
 
+#trip-info #side_links {
+  display:block; 
+  position: absolute; 
+  top: 64px; 
+  right: 30px;
+}
 
 .itinerary {
   width: 726px; 
@@ -504,7 +511,7 @@ float: left;
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0; 
-	width: 60%; 
+	width: 250px; 
 }
 
 #sortable li , .start_point li{ 
