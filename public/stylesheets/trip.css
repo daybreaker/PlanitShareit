@@ -37,9 +37,11 @@ img {
   cursor: pointer;
 }
 
-.nav img.browse.disabled {
+.nav img.browse.disabled, .browse.disabled, .browse.swapped {
   display: none;
 }
+
+
 
 /** ITENERARY **/
 
@@ -198,9 +200,6 @@ img {
 /*	min-height: 300px;*/
 }
 
-#next-day {
-	display:none;
-}
 
 #itenerary .daily-view .item .body {
 	margin-top: 10px;
@@ -232,7 +231,7 @@ img {
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
 */
-.scrollable, .daily-view {
+.scrollable, .daily-view, .unscheduled-events {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
@@ -241,6 +240,23 @@ img {
 /*	border: 3px solid #F6F692;*/
 	border-top: none;
 }
+
+.unscheduled-events { 
+	width: 666px;
+	border: 2px solid #F6F692;
+	position: relative;
+	top: -23px;
+	padding: 10px;
+}
+
+.unscheduled-events div.top { 
+	margin-bottom: 13px;
+}
+
+.unscheduled-events .col-1 { 
+float: left;
+}
+
 
 /*
 	root element for scrollable items. Must be absolutely positioned
@@ -325,8 +341,10 @@ img {
 }
 
 #itenerary-menu {
-	position: absolute;
-	top: 630px;
+	float: right;
+	position: relative;
+	right: 50px;
+	top: 50px;
 }
 
 #share_it {

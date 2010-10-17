@@ -1,19 +1,21 @@
-<div class="days items">
-	<% @trip.days.each do |day| %>
-	<div class="day item">
-		<div class="head"><%= day.strftime("%B %d") %></div>
-		<div class="body">
-			<% events = @trip.events.for_date(day.strftime("%Y-%m-%d")) %>
-			<% column_1 = events[0...(events.size/2.0).ceil] %>
-			<% column_2 = events[(events.size/2.0).ceil...events.size] %>
-			<div class='col-1'>
-				<%= render :partial => 'events/event_full', :collection => column_1 %>
+<div class="daily-view">
+	<div class="days items">
+		<% @trip.days.each do |day| %>
+		<div class="day item">
+			<div class="head"><%= day.strftime("%B %d") %></div>
+			<div class="body">
+				<% events = @trip.events.for_date(day.strftime("%Y-%m-%d")) %>
+				<% column_1 = events[0...(events.size/2.0).ceil] %>
+				<% column_2 = events[(events.size/2.0).ceil...events.size] %>
+				<div class='col-1'>
+					<%= render :partial => 'events/event_full', :collection => column_1 %>
+				</div>
+				<div class='col-2'>
+					<%= render :partial => 'events/event_full', :collection => column_2 %>
+				</div>
+				<div style="clear:both"></div>
 			</div>
-			<div class='col-2'>
-				<%= render :partial => 'events/event_full', :collection => column_2 %>
-			</div>
-			<div style="clear:both"></div>
 		</div>
+		<% end %>
 	</div>
-	<% end %>
 </div>

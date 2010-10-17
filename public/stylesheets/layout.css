@@ -9,6 +9,10 @@ img {
   border: none;
 }
 
+strong {
+	color: #3C6079;
+}
+
 #content, #footer {
   width: 970px;
   margin: 0 auto;
@@ -21,12 +25,21 @@ img {
 	margin: 30px auto;
 	padding: 0px;
 	position: relative;
-	width: 970px;
+	width: 960px;
+	height: 60px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+#header #logo {
+  font-size: 180%;
+  position: relative;
+  left: 5px;
 }
 
 #header #user_nav {
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 0px;
 }
 

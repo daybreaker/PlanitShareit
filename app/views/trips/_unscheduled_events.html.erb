@@ -1,0 +1,14 @@
+
+	<div class="top"><strong>Tell us when...</strong></div>
+	<div>
+		<% events = @trip.events.unscheduled %>
+		<% column_1 = events[0...(events.size/2.0).ceil] %>
+		<% column_2 = events[(events.size/2.0).ceil...events.size] %>
+		<div class='col-1'>
+			<%= render :partial => 'events/event_full', :collection => column_1 %>
+		</div>
+		<div class='col-2'>
+			<%= render :partial => 'events/event_full', :collection => column_2 %>
+		</div>
+		<div style="clear:both"></div>
+	</div>
