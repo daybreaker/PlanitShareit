@@ -10,7 +10,8 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
 
-	  authorize! :view, @trip
+  	@starting_location = @trip.starting_location
+  	authorize! :view, @trip
   end
 
   def new
@@ -19,9 +20,6 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(params[:trip])
-	geocode = Geokit::Geocoders::GoogleGeocoder.geocode(@trip.destination)
-	@trip.latitude=geocode.lat
-	@trip.longitude=geocode.lng
     if @trip.save
       redirect_to @trip, :notice => 'Trip created.'
     else

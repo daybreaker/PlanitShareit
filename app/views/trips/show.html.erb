@@ -36,11 +36,65 @@
 					</div>
 					<div class="body">
 						<div class='col-1'>
-
+							<div class="full-event">
+								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+								<div class="info">
+									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+									<span class="time">2:00pm - 5:00pm</span>
+									<div class="description">
+										This is a description for an event that i made up just now howpefully i can make
+										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+									</div>
+								</div>
+							</div>
+							<div class="full-event">
+								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+								<div class="info">
+									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+									<span class="time">2:00pm - 5:00pm</span>
+									<div class="description">
+										This is a description for an event that i made up just now howpefully i can make
+										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+									</div>
+								</div>
+							</div>
+							<div class="full-event">
+								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+								<div class="info">
+									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+									<span class="time">2:00pm - 5:00pm</span>
+									<div class="description">
+										This is a description for an event that i made up just now howpefully i can make
+										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class='col-2'>
-
+							<div class="full-event">
+								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+								<div class="info">
+									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+									<span class="time">2:00pm - 5:00pm</span>
+									<div class="description">
+										This is a description for an event that i made up just now howpefully i can make
+										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+									</div>
+								</div>
+							</div>
+							<div class="full-event">
+								<span class="title"><%= image_tag 'mapped.png' %> Mega Sick Title</span>
+								<div class="info">
+									<span class="address">1234 OMGWTFBBQ Rd, Sickton, PA 70102</span><br/>
+									<span class="time">2:00pm - 5:00pm</span>
+									<div class="description">
+										This is a description for an event that i made up just now howpefully i can make
+										it look decent when deisplayed on screen. I alwo suie dsf;jbsf;b;jbVS: FUCK!
+									</div>
+								</div>
+							</div>
 						</div>
+						<div style="clear:both"></div>
 					</div>
 				</div>
 			</div>
@@ -61,7 +115,7 @@ var map;
 var marker;
    
 function initialize(){
-  var latlng = new google.maps.LatLng(<%= @trip.latitude %>, <%= @trip.longitude %>);
+  var latlng = new google.maps.LatLng(<%= @starting_location['latlng'] %>);
   var options = {
     scrollwheel: false,
     zoom: 11,
@@ -73,15 +127,18 @@ function initialize(){
        
   //GEOCODER
   geocoder = new google.maps.Geocoder();
-  
+    var bounds = new google.maps.LatLngBounds();
+
 	  var mainMarker = new google.maps.Marker({
         position: latlng, 
         map: map, 
-        title:"<%= @trip.destination %>"
+        title:"<%= @starting_location['name'] %>"
 	  });
-  var bounds = new google.maps.LatLngBounds();
-	  
-  <% @trip.events.mapped.each do |place| %>
+	<% unless @trip.events.mapped.blank? %>
+	   bounds.extend(latlng);
+       map.fitBounds(bounds);
+	<% end %> 
+    <% @trip.events.mapped.each do |place| %>
 	  myLatLng = new google.maps.LatLng(<%= place.latitude %>, <%= place.longitude %>);
 	  var marker = new google.maps.Marker({
         position: myLatLng, 
@@ -90,7 +147,7 @@ function initialize(){
 	  }); 
       bounds.extend(myLatLng);
       map.fitBounds(bounds);
-  <% end %>
+    <% end %>
   
   $("#map_canvas").append('<span class="hide_map"><a href="javascript://" id="hide_map_link">hide map</a></span>');
 }
