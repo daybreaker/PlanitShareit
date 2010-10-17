@@ -193,7 +193,7 @@ img {
 
 
 #itenerary .daily-view .item {
-	width: 720px;
+	width: 690px;
 /*	float: none;*/
 /*	min-height: 300px;*/
 }
@@ -322,6 +322,11 @@ img {
 
 .event_tiny a:hover {
   text-decoration: underline;
+}
+
+#itenerary-menu {
+	position: absolute;
+	top: 630px;
 }
 
 #share_it {
