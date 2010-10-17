@@ -20,7 +20,7 @@ img {
 
 
 .itinerary {
-  width: 726px;
+  width: 726px; 
   margin-bottom: 10px;
 }
 
@@ -44,7 +44,7 @@ img {
 /** ITENERARY **/
 
 #itenerary {
-	width: 726px;
+	width: 690px;
 	margin-top: 25px;
 	overflow: visible;
 	padding-top: 5px;
@@ -127,7 +127,7 @@ img {
 
 #itenerary li.day {
 	float: left;
-	width: 179px;
+	width: 170px;
 	border: 1px solid #F6F791;
 	height: 100%;
 }
@@ -194,12 +194,12 @@ img {
 	width: 50%;
 	float: left;
 	border-right: 1px solid yellow;
-	min-height: 300px;
+	min-height: 250px;
 }
 
 #itenerary .daily-view .col-2 {
 	margin-left: 50%;
-	min-height: 300px;
+	min-height: 250px;
 }
 .links a.next {
   position: absolute;
@@ -218,7 +218,7 @@ img {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
-	width: 720px;
+	width: 687px;
 	height:300px;
 /*	border: 3px solid #F6F692;*/
 	border-top: none;
