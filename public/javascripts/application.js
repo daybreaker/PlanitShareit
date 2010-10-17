@@ -20,7 +20,7 @@ $(function() {
   $('#share_it').live('click', function() {
     $('#content').flip({
       onBefore: function() {
-        $('#content').load($('#share_it a').attr('href') + ' #content');
+        $('#content').load($('#share_it a').attr('href') + ' #content>*');
       },
       direction: 'rl',
       color: '#fff'
