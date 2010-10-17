@@ -22,48 +22,12 @@ img {
   float: right;
 }
 
-.links {
-  position: relative;
-  text-align: center;
-  margin-top: 5px;
-  background-color: #A2CECF;
-  width: 726px;
-  height: 30px;
-}
-
-.links a.switch {
-  display: block;
-  position: absolute;
-  color: white;
-  text-decoration: none;
-  background-color: #719FAE;
-  width: 120px;
-  height: 23px;
-  padding-top: 7px;
-  font-size: 90%;
-}
-
-.links a.active {
-  background-color: #2E607B;
-  top: -10px;
-  padding-top: 17px;
-}
-
-.links a.overview {
-  left: 243px;
-}
-
-.links a.daily {
-  left: 363px;
-}
-
-.links a.browse {
+.nav img.browse {
   cursor: pointer;
 }
 
-.links a.prev {
-  position: absolute;
-  left: 5px;
+.nav img.browse.disabled {
+  display: none;
 }
 
 /** ITENERARY **/
@@ -114,11 +78,13 @@ img {
 #itenerary .nav .daily {
 	background-image: url(../images/daily.png);
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 #itenerary .nav .overview {
 	background-image: url(../images/overview.png);
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 #itenerary ul {
@@ -162,7 +128,7 @@ img {
 	border-right: none;
 }
 
-#itenerary li.day .head {
+#itenerary .day .head {
 	background-color:#F6F791;
 	height:25px;
 	padding-top:7px;
@@ -189,7 +155,19 @@ img {
 	top: -21px;
 }
 
+#itenerary .daily-view {
+	min-height: 200px;
+}
 
+#itenerary .daily-view .col-1 {
+	width: 50%;
+	float: left;
+	border-right: 1px solid yellow;
+}
+
+#itenerary .daily-view .col-2 {
+	margin-left: 50%;
+}
 .links a.next {
   position: absolute;
   right: 5px;
@@ -294,40 +272,14 @@ img {
 
 #share_it {
   position: absolute;
-  left: 0;
+  left: 11px;
+  top: 83px;
   width: 260px;
   height: 30px;
-  text-align: right;
-  vertical-align: middle;
-  padding: 12px 15px 0 0;
-  font-size: 110%;
-  background-color: red;
 }
 
-/* active state (current page state) */
-.navi a.active {
-	background-position:0 -16px;     
-}
-
-#print_itinerary {
-  position: absolute;
-  left: 0;
-  top: 65px;
-  height: 30px;
-  width: 215px;
-  padding: 12px 0 0 15px;
-  background-color: blue;
-}
-
-#share_it a,
-#print_itinerary a {
-  display: block;
-  text-decoration: none;
-}
-
-#share_it a:hover,
-#print_itinerary a:hover {
-  text-decoration: underline;
+#share_it img:hover {
+  cursor: pointer;
 }
 
 #open_events {

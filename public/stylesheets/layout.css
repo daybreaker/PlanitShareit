@@ -47,9 +47,7 @@ img {
 #content #sidebar {
   float: right;
   position: relative;
-  background-color: #eee;
   width: 200px;
-  height: 300px;
   padding: 15px;
 }
 
@@ -88,4 +86,30 @@ img {
 
 .hide_map a:hover{
 	text-decoration: none;
+}
+
+/** EVENTS **/
+
+.full-event {
+	margin: 10px;
+	font-size: 9pt;
+}
+
+.full-event .title {
+	font-weight: bold;
+}
+
+.full-event img {
+	margin-right: 3px;
+	position: relative;
+	top: 2px;
+}
+
+.full-event .info {
+	margin: 0 18px;
+	padding-bottom: 10px;
+}
+
+.full-event .description {
+	margin-top: 5px;
 }
