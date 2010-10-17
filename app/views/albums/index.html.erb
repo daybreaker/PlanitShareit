@@ -3,6 +3,8 @@
   <div id="share_it">
     <%= link_to image_tag("plan-it.png"), trip_url(@trip) %>
   </div>
+
+  <div class="button"><a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a></div>
 </div>
 
 <div id="trip-head">
@@ -26,9 +28,17 @@
 		</div>
 		<div style="clear: left;"></div>
 		<div class="tab-panes">
-			<!-- my content -->
+			<!-- Albums -->
+			<div class="albums">
+        <%= render @trip.albums %>
 
-			<!-- end my conten -->
+        <% if @trip.albums.empty? %>
+          <a href="<%= new_trip_album_path(@trip) %>" rel="#album-form-overlay">Add album</a>
+        <% end %>
+      </div>
+      <!-- End Albums -->
+
+      <!-- Journals -->
 			<div class="daily-view">
 				<div class="day">
 					<div class="head">
@@ -39,11 +49,12 @@
 					</div>
 				</div>
 			</div>
+			<!-- End Journals -->
 		</div>
 	</div>
 </div>
 
-<div id="event-form-overlay" style="display:none">
+<div id="album-form-overlay" class="overlay" style="display:none">
 	<!-- the external content is loaded inside this tag -->
 	<div class="contentWrap"></div>
 </div>

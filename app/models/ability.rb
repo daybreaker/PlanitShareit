@@ -9,6 +9,8 @@ class Ability
 		can :edit, Event, :trip => {:user_id => user.id}
 
     can :view, Album, :permission => 'public'
+    can :create, Album, :trip => {:user_id => user.id}
+    can :edit, Album, :trip => {:user_id => user.id}
 	end
 end
 

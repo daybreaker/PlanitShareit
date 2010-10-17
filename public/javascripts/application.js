@@ -20,7 +20,7 @@ $(function() {
   $('#share_it').live('click', function() {
     $('#content').flip({
       onBefore: function() {
-        $('#content').load($('#share_it a').attr('href') + ' #content');
+        $('#content').load($('#share_it a').attr('href') + ' #content>*');
       },
       direction: 'rl',
       color: '#fff'
@@ -30,10 +30,10 @@ $(function() {
   });
 });
 
-function success(msg,type) {
-  $('#flash').addClass(type).html(msg).show();
+function success(msg) {
+  $('#flash').addClass('notice').html(msg).show();
 
-  $('#flash').delay(2000).fadeOut().removeClass(type);
+  $('#flash').delay(2000).fadeOut().removeClass('notice');
 }
 
 function reset_form(selector) {
