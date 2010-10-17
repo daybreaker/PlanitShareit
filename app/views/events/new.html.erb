@@ -4,5 +4,5 @@
 </div>
 
 <%= form_for([@trip, @event], :html => {:class => 'event_form'}) do |f| %>
-<%= render 'form', :f => f, :buttons => [image_submit_tag('event-add-another.png'), image_submit_tag('event-finish.png')] %>
+<%= render 'form', :f => f, :buttons => [image_submit_tag('event-finish.png')] %>
 <% end %>

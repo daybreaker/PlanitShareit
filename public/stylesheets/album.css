@@ -94,3 +94,17 @@
   border: 1px solid #ccc;
   text-align: center;
 }
+
+.album_info .back_button {
+  float: right;
+  margin-right: 20px;
+}
+
+.album_info .back_button a {
+  text-decoration:none;
+  color: #305F79;
+}
+
+.album_info .back_button a:hover {
+  text-decoration: underline;
+}
