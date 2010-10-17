@@ -1,5 +1,8 @@
-<h1>New post</h1>
+<div class="header">
+  <%= image_tag 'event-form-header.png', :class => 'title' %>
+  <a href="#" onclick="$open_overlay.close(); return false;"><%= image_tag 'event-form-close.png' %></a>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', trips_path %>
+<%= form_for([@trip, @event], :html => {:class => 'event_form'}) do |f| %>
+<%= render 'form', :f => f, :buttons => [image_submit_tag('event-finish.png'), image_submit_tag('event-add-another.png')] %>
+<% end %>

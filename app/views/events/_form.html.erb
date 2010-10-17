@@ -1,8 +1,9 @@
-<div id="map_canvas" style="width:300px; height:300px; float:right"></div>
+<!--
+<div id="event_map_canvas" style="width:300px; height:300px; float:right"></div>
+-->
 
-<%= form_for([@trip, @event]) do |f| %>
-	<% if @event.errors.any? %>
-	<div id="error-list">
+
+	<div id="error-list" style="display:none">
 		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 		<ul>
 		<% @event.errors.full_messages.each do |msg| %>
@@ -10,44 +11,51 @@
 		<% end %>	
 		</ul>
 	</div>
-	<% end %>
 	
 	<%= f.hidden_field :latitude %>
 	<%= f.hidden_field :longitude %>
 	
-	<div class="field">
-		<%= f.label :title %><br />
-		<%= f.text_field :title %>
-	</div>
+	<table>
+	  <tr>
+	    <th><%= f.label :title %></th>
+		  <td><%= f.text_field :title %></td>
+    </tr>
 	
-	<div class="field">
-		<%= f.label :location %><br />
-		<%= f.text_field :location %>
-	</div>
-	<div class="field">
-		<%= f.label :start_date %><br />
-		<%= f.text_field :start_date %>
-	</div>
-	<div class="field">
-		<%= f.label :end_date %><br />
-		<%= f.text_field :end_date %>
-	</div>
-	<div class="field">
-		<%= f.label :notes %><br />
-		<%= f.text_area :notes %>
-	</div>
-	<div class="field">
-		<%= f.label :must_do %><br />
-		<%= f.check_box :must_do %>
-	</div>
-	<div class="field">
-		<%= f.label :done %><br />
-		<%= f.check_box :done %>
-	</div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-<% end %>		
+	  <tr>
+	    <th><%= f.label :location %></th>
+		  <td><%= f.text_field :location %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :start_date %></th>
+		  <td><%= f.text_field :start_date %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :end_date %></th>
+		  <td><%= f.text_field :end_date %></td>
+		</tr>
+
+	  <tr>
+	    <th><%= f.label :notes %></th>
+		  <td><%= f.text_area :notes %></td>
+		</tr>
+
+	  <tr>
+	    <th></th>
+		  <td><%= f.label :must_do, 'Make this a must do!' %> <%= f.check_box :must_do %></td>
+		</tr>
+
+    <tr>
+      <th></th>
+      <td>
+        <% buttons.each do |button| %>
+        <%= button %>
+        <% end %>
+      </td>
+    </tr>
+	</table>
+		
 
 <script type="text/javascript">
 
@@ -63,7 +71,7 @@ function initialize(){
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
        
-  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+  map = new google.maps.Map(document.getElementById("event_map_canvas"), options);
        
   //GEOCODER
   geocoder = new google.maps.Geocoder();
@@ -90,7 +98,10 @@ $(document).ready(function() {
     $("#event_location").autocomplete({
       //This bit uses the geocoder to fetch address values
       source: function(request, response) {
-        geocoder.geocode( {'address': request.term }, function(results, status) {
+	    sw = new google.maps.LatLng(<%=@trip.latitude - 4 %>,<%=@trip.longitude - 4 %>);
+		ne = new google.maps.LatLng(<%=@trip.latitude + 4 %>,<%=@trip.longitude + 4 %>);
+		map_bounds = new google.maps.LatLngBounds(sw, ne);
+        geocoder.geocode( {'address': request.term,  'bounds':map_bounds }, function(results, status) {
           response($.map(results, function(item) {
             return {
               label:  item.formatted_address,

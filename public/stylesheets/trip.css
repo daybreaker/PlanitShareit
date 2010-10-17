@@ -183,12 +183,21 @@ img {
 }
 
 
-#itenerary .panes {
+#itenerary .tab-panes {
 	border: 2px solid #F6F791;
 	position: relative;
 	top: -21px;
 }
 
+
+.links a.next {
+  position: absolute;
+  right: 5px;
+}
+
+.links a.browse.disabled {
+  display: none;
+}
 
 /*
 	root element for the scrollable.
@@ -200,7 +209,7 @@ img {
 	overflow:hidden;
 	width: 720px;
 	height:300px;
-	border: 3px solid #F6F692;
+/*	border: 3px solid #F6F692;*/
 	border-top: none;
 }
 
@@ -327,19 +336,6 @@ img {
   padding: 10px;
 }
 
-/* overlay (should this be here?) */
-#form-overlay {
-	background-color: white;
-	color: black;
-	height: 450px;
-}
-
-div.contentWrap {
-	height:500px;
-	width: 400px;
-	overflow-y:auto;
-
-
 /* UNLESS YOU KNOW WHAT YOU'RE DOING, DO NOT CHANGE THE FOLLOWING RULES */
 .easy-accordion{display:block;position:relative;overflow:hidden;padding:0;margin:0}
 .easy-accordion dt,.easy-accordion dd{margin:0;padding:0}
@@ -429,3 +425,67 @@ div.contentWrap {
 /****** END SORTABLE *****/
 
 /****** MAP STYLES *******/
+
+/****** Event form *******/
+
+#event-form-overlay {
+	background-color: white;
+	color: black;
+	height: 500px;
+	width: 650px;
+	margin-top: 0px;
+}
+
+#event-form-overlay div.contentWrap {
+	height:500px;
+	width: 650px;
+	overflow-y:auto;
+}
+
+#event-form-overlay .header {
+  background-color: #A2CECF;
+}
+
+#event-form-overlay .header .title {
+  margin-left: 20px;
+}
+
+#event-form-overlay .header a {
+  float: right;
+  margin-right: 20px;
+}
+
+.event_form {
+  padding: 10px;
+}
+
+.event_form table {
+  width: 400px;
+  margin: 0 auto;
+  color: #333;
+  border-collapse: collapse;
+}
+
+.event_form table th,
+.event_form table td,
+.event_form table input[type=text] {
+  padding: 5px;
+}
+
+.event_form table th {
+  text-align: right;
+  font-weight: normal;
+}
+
+.event_form input[type=text] {
+  width: 200px;
+  border: 1px solid #ccc;
+}
+
+.event_form textarea {
+  height: 70px;
+  width: 250px;
+  border: 1px solid #ccc;
+}
+
+/****** /Event form ******/

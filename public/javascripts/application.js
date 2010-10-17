@@ -14,3 +14,13 @@ $(function() {
   });
 
 });
+
+function success(msg,type) {
+  $('#flash').addClass(type).html(msg).show();
+
+  $('#flash').delay(2000).fadeOut().removeClass(type);
+}
+
+function reset_form(selector) {
+  $(selector).find('input:text, textarea').val('');
+}

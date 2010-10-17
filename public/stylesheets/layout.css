@@ -48,3 +48,40 @@ body {
   height: 300px;
   padding: 15px;
 }
+
+#map_canvas{
+	border: 1px solid #CCC;
+}
+
+.hide_map{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: #f6f692;
+	z-index: 17000;
+	margin-right: 2px;
+	padding: 5px 12px;
+	border-top: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-top-right-radius: 12px;
+	-moz-border-radius-topright: 12px;
+	border-top-left-radius: 12px;
+	-moz-border-radius-topleft: 12px;
+
+}
+
+
+
+.hide_map a{
+	outline: 0;
+	text-decoration: none;
+	font-size: 80%;
+	text-transform: uppercase;
+	color: #2d607b;
+	font-weight: bold;
+}
+
+.hide_map a:hover{
+	text-decoration: none;
+}

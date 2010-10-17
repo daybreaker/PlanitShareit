@@ -1,0 +1,6 @@
+<% if @event.update_attributes(params[:event]) %>
+  $open_overlay.close();
+  $("#day_overview").html("<%= escape_javascript(render(:partial => 'trips/day_overview'))%>");
+  success('Event successfully saved.', 'notice');
+<% else %>
+<% end %>
