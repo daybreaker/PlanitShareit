@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,13 +25,8 @@ gem 'rails', '3.0.1'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
- group :development, :test do
-   gem 'sqlite3-ruby', :require => 'sqlite3'
- end
- 
-group :production do
-  gem 'mysql', '2.8.1'
-end
+gem 'mysql'
+
 
 gem "mongrel", :group => :development
 gem "factory_girl_rails", :group => :test
@@ -45,4 +40,4 @@ gem "jquery-rails"
 gem "cancan"
 gem "geokit"
 gem "carrierwave"
-gem "rmagick"
+#gem "rmagick"
